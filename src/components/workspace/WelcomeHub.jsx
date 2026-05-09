@@ -32,6 +32,30 @@ export default function WelcomeHub() {
     initialData: [],
   });
 
+  const { data: sessions = [] } = useQuery({
+    queryKey: ['study-sessions-recent'],
+    queryFn: () => base44.entities.StudySession.list('-created_date', 100),
+    initialData: [],
+  });
+
+  const todayKey = new Date().toDateString();
+  const todaysSessions = sessions.filter((session) => {
+    const sessionDate = session.created_date || session.created_at;
+    if (!sessionDate) return false;
+    return new Date(sessionDate).toDateString() === todayKey;
+  });
+
+  const todayStudyMinutes = todaysSessions.reduce((sum, session) => sum + (session.duration_minutes || 0), 0);
+  const todayStudyHours = (todayStudyMinutes / 60).toFixed(1);
+  const todaySessionsCount = todaysSessions.length;
+  const dailyStudyTarget = Number(profile?.studyTimeTarget || 0);
+  const dailyTargetProgress = dailyStudyTarget > 0
+    ? Math.min(100, Math.round(((todayStudyMinutes / 60) / dailyStudyTarget) * 100))
+    : 0;
+  const rankTitle = level >= 15 ? 'Legend' : level >= 10 ? 'Elite' : level >= 5 ? 'Grinder' : 'Rookie';
+  const xpIntoCurrentLevel = xp % 500;
+  const levelProgress = Math.round((xpIntoCurrentLevel / 500) * 100);
+
   const handleAction = (action) => {
     setActiveWorkspace(action.workspace);
     setActiveTool(action.tool);
@@ -89,7 +113,7 @@ export default function WelcomeHub() {
       </motion.div>
 
       {/* Stats */}
-      <motion.div variants={itemVariants} className="grid grid-cols-3 gap-3 mb-10 max-w-md mx-auto">
+      <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-10">
         <div className={`p-3 rounded-xl text-center ${modeConfig.glass ? 'glass' : 'bg-card border border-border'}`}>
           <div className="flex items-center justify-center gap-1 mb-1">
             <Star className="w-3.5 h-3.5 text-warning" />
@@ -102,7 +126,7 @@ export default function WelcomeHub() {
             <Zap className="w-3.5 h-3.5 text-primary" />
           </div>
           <p className="text-lg font-bold">Lv.{level}</p>
-          <p className="text-[10px] text-muted-foreground">Level</p>
+          <p className="text-[10px] text-muted-foreground">{rankTitle}</p>
         </div>
         <div className={`p-3 rounded-xl text-center ${modeConfig.glass ? 'glass' : 'bg-card border border-border'}`}>
           <div className="flex items-center justify-center gap-1 mb-1">
@@ -111,7 +135,51 @@ export default function WelcomeHub() {
           <p className="text-lg font-bold">{streak}d</p>
           <p className="text-[10px] text-muted-foreground">Streak</p>
         </div>
+        <div className={`p-3 rounded-xl text-center ${modeConfig.glass ? 'glass' : 'bg-card border border-border'}`}>
+          <div className="flex items-center justify-center gap-1 mb-1">
+            <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
+          </div>
+          <p className="text-lg font-bold">{todayStudyHours}h</p>
+          <p className="text-[10px] text-muted-foreground">Study Today</p>
+        </div>
+        <div className={`p-3 rounded-xl text-center ${modeConfig.glass ? 'glass' : 'bg-card border border-border'}`}>
+          <div className="flex items-center justify-center gap-1 mb-1">
+            <Target className="w-3.5 h-3.5 text-emerald-400" />
+          </div>
+          <p className="text-lg font-bold">{todaySessionsCount}</p>
+          <p className="text-[10px] text-muted-foreground">Sessions</p>
+        </div>
       </motion.div>
+
+      <motion.div variants={itemVariants} className={`mb-8 p-4 rounded-2xl ${modeConfig.glass ? 'glass border border-border' : 'bg-card border border-border'}`}>
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">Progress</p>
+          <p className="text-xs text-muted-foreground">{xpIntoCurrentLevel}/500 XP to next level</p>
+        </div>
+        <div className="h-2 rounded-full bg-muted overflow-hidden mb-3">
+          <div className="h-full bg-primary rounded-full transition-all" style={{ width: `${levelProgress}%` }} />
+        </div>
+        <div className="flex items-center justify-between text-xs">
+          <span className="text-muted-foreground">Daily study target</span>
+          <span className="font-semibold text-foreground">{dailyTargetProgress}%</span>
+        </div>
+        <div className="h-1.5 rounded-full bg-muted overflow-hidden mt-1">
+          <div className="h-full bg-emerald-500 rounded-full transition-all" style={{ width: `${dailyTargetProgress}%` }} />
+        </div>
+      </motion.div>
+
+      {profile?.examType && (
+        <motion.div variants={itemVariants} className="mb-8 p-4 rounded-2xl border border-primary/20 bg-primary/5">
+          <div className="flex items-center gap-2 mb-1">
+            <Target className="w-4 h-4 text-primary" />
+            <h3 className="text-sm font-semibold">Exam Command Center</h3>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Focus mode active for <span className="text-foreground font-medium uppercase">{profile.examType}</span>
+            {profile.examStage ? ` (${profile.examStage})` : ''}. Keep your daily streak alive and complete your target hours.
+          </p>
+        </motion.div>
+      )}
 
       {/* Daily Briefing */}
       <motion.div variants={itemVariants}>

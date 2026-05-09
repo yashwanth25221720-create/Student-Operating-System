@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
@@ -11,7 +11,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 // ─── Step definitions ─────────────────────────────────────────────────────────
-const STEPS = ['intro', 'name', 'identity', 'goals', 'schedule', 'availability', 'style', 'ai_plan', 'launch'];
+const BASE_STEPS = ['intro', 'name', 'identity', 'goals', 'schedule', 'availability', 'style', 'ai_plan', 'launch'];
+const EXAM_STEPS = ['exam_type', 'exam_stage'];
 
 const IDENTITIES = [
   { id: 'engineering', icon: Code2, label: 'Engineering Student', desc: 'CS, ECE, Mech, Civil...' },
@@ -61,6 +62,22 @@ const STUDY_STYLES = [
   { id: 'reading', label: 'Reader / Writer', desc: 'Notes, summaries, essays', emoji: '📖' },
   { id: 'practice', label: 'Practice-First', desc: 'Problems, quizzes, coding', emoji: '🏋️' },
   { id: 'social', label: 'Discussion-Based', desc: 'Explain concepts out loud', emoji: '💬' },
+];
+
+const EXAM_TYPES = [
+  { id: 'jee', label: 'JEE', desc: 'Engineering entrance' },
+  { id: 'neet', label: 'NEET', desc: 'Medical entrance' },
+  { id: 'gate', label: 'GATE', desc: 'Postgraduate engineering' },
+  { id: 'cat', label: 'CAT', desc: 'MBA entrance' },
+  { id: 'upsc', label: 'UPSC', desc: 'Civil services' },
+  { id: 'gre', label: 'GRE', desc: 'Graduate admissions abroad' },
+  { id: 'other', label: 'Other', desc: 'Any other competitive exam' },
+];
+
+const EXAM_STAGES = [
+  { id: 'beginner', label: 'Beginner', desc: 'Getting started with basics' },
+  { id: 'intermediate', label: 'Intermediate', desc: 'Consistent prep is ongoing' },
+  { id: 'advanced', label: 'Advanced', desc: 'Mock tests and final polishing' },
 ];
 
 // ─── Particle background ───────────────────────────────────────────────────────
@@ -168,12 +185,24 @@ export default function Onboarding() {
     },
     freeTimeHours: 16,
     studyTimeTarget: 9.6,
-    style: ''
+    style: '',
+    examType: '',
+    examStage: '',
   });
   const [isGenerating, setIsGenerating] = useState(false);
   const [aiPlan, setAiPlan] = useState(null);
 
+  const needsExamDetails = profile.goals.includes('exam_prep') || profile.identity === 'competitive';
+
+  const STEPS = useMemo(() => {
+    if (!needsExamDetails) return BASE_STEPS;
+    const idx = BASE_STEPS.indexOf('schedule');
+    return [...BASE_STEPS.slice(0, idx), ...EXAM_STEPS, ...BASE_STEPS.slice(idx)];
+  }, [needsExamDetails]);
+
   const step = STEPS[stepIndex];
+  const progressSteps = STEPS.slice(1, -1);
+  const progressIndex = progressSteps.indexOf(step);
 
   const AI_MESSAGES = {
     intro: "Hey! I'm your SOS AI — your personal student co-pilot. I'll help you study smarter, build faster, and grow every day. Let's set you up in 60 seconds. Ready?",
@@ -181,6 +210,8 @@ export default function Onboarding() {
     identity: `Nice to meet you, ${profile.name || 'you'}! What best describes your situation right now?`,
     goals: `Perfect. What are you working towards? Pick all that apply — I'll tailor your entire OS around these. 🎯`,
     schedule: `When does your brain work best? I'll schedule your toughest tasks during your peak hours. ⚡`,
+    exam_type: `Since you're on an exam-focused path, tell me the exact exam so I can personalize strategy and content. 🎯`,
+    exam_stage: `Where are you currently in your preparation journey? I'll adjust intensity accordingly.`,
     time: `How many hours can you realistically commit each day? Honest answers = better planning. 💪`,
     availability: `Now let's map your real day. Add college, travel, tuition, play time, and any other fixed commitments. I'll calculate your free time from it.`,
     style: `Last one! How do you learn best? This shapes how I present content and suggest tools for you.`,
@@ -218,6 +249,12 @@ export default function Onboarding() {
     }
   }, [step]);
 
+  useEffect(() => {
+    if (stepIndex > STEPS.length - 1) {
+      setStepIndex(Math.max(0, STEPS.length - 1));
+    }
+  }, [STEPS.length, stepIndex]);
+
   const generateAIPlan = async () => {
     setIsGenerating(true);
     const result = await base44.integrations.Core.InvokeLLM({
@@ -230,6 +267,8 @@ Fixed commitments per day: ${Object.entries(profile.commitments).map(([key, valu
 Calculated free time: ${profile.freeTimeHours}h/day
 Suggested study target: ${profile.studyTimeTarget}h/day
 Learning style: ${profile.style}
+Exam selected: ${profile.examType || 'not specified'}
+Exam preparation stage: ${profile.examStage || 'not specified'}
 
 Generate a welcome plan with:
 1. A personalized greeting
@@ -352,7 +391,7 @@ Generate a welcome plan with:
             {/* ── NAME ── */}
             {step === 'name' && (
               <motion.div key="name" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="w-full">
-                <StepDots steps={STEPS.slice(1, -1)} current={0} />
+                <StepDots steps={progressSteps} current={progressIndex} />
                 <AIGuide message={AI_MESSAGES.name} />
                 <div className="space-y-4">
                   <Input
@@ -373,7 +412,7 @@ Generate a welcome plan with:
             {/* ── IDENTITY ── */}
             {step === 'identity' && (
               <motion.div key="identity" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="w-full">
-                <StepDots steps={STEPS.slice(1, -1)} current={1} />
+                <StepDots steps={progressSteps} current={progressIndex} />
                 <AIGuide message={AI_MESSAGES.identity} />
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {IDENTITIES.map(id => (
@@ -398,7 +437,7 @@ Generate a welcome plan with:
             {/* ── GOALS ── */}
             {step === 'goals' && (
               <motion.div key="goals" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="w-full">
-                <StepDots steps={STEPS.slice(1, -1)} current={2} />
+                <StepDots steps={progressSteps} current={progressIndex} />
                 <AIGuide message={AI_MESSAGES.goals} />
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
                   {GOALS.map(g => (
@@ -425,10 +464,64 @@ Generate a welcome plan with:
               </motion.div>
             )}
 
+            {/* ── EXAM TYPE (CONDITIONAL) ── */}
+            {step === 'exam_type' && (
+              <motion.div key="exam_type" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="w-full">
+                <StepDots steps={progressSteps} current={progressIndex} />
+                <AIGuide message={AI_MESSAGES.exam_type} />
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+                  {EXAM_TYPES.map(exam => (
+                    <button
+                      key={exam.id}
+                      onClick={() => updateProfile('examType', exam.id)}
+                      className={`p-4 rounded-xl border text-left transition-all hover:scale-[1.02] ${
+                        profile.examType === exam.id
+                          ? 'border-primary bg-primary/10 ring-2 ring-primary'
+                          : 'border-border bg-card/40 hover:border-primary/30'
+                      }`}
+                    >
+                      <p className="text-sm font-semibold">{exam.label}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{exam.desc}</p>
+                    </button>
+                  ))}
+                </div>
+                <Button className="w-full" disabled={!profile.examType} onClick={next}>
+                  Continue <ChevronRight className="w-4 h-4 ml-1" />
+                </Button>
+              </motion.div>
+            )}
+
+            {/* ── EXAM STAGE (CONDITIONAL) ── */}
+            {step === 'exam_stage' && (
+              <motion.div key="exam_stage" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="w-full">
+                <StepDots steps={progressSteps} current={progressIndex} />
+                <AIGuide message={AI_MESSAGES.exam_stage} />
+                <div className="space-y-2 mb-6">
+                  {EXAM_STAGES.map(stage => (
+                    <button
+                      key={stage.id}
+                      onClick={() => updateProfile('examStage', stage.id)}
+                      className={`w-full p-4 rounded-xl border text-left transition-all ${
+                        profile.examStage === stage.id
+                          ? 'border-primary bg-primary/10 ring-2 ring-primary'
+                          : 'border-border bg-card/40 hover:border-primary/30'
+                      }`}
+                    >
+                      <p className="text-sm font-semibold">{stage.label}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{stage.desc}</p>
+                    </button>
+                  ))}
+                </div>
+                <Button className="w-full" disabled={!profile.examStage} onClick={next}>
+                  Continue <ChevronRight className="w-4 h-4 ml-1" />
+                </Button>
+              </motion.div>
+            )}
+
             {/* ── SCHEDULE ── */}
             {step === 'schedule' && (
               <motion.div key="schedule" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="w-full">
-                <StepDots steps={STEPS.slice(1, -1)} current={3} />
+                <StepDots steps={progressSteps} current={progressIndex} />
                 <AIGuide message={AI_MESSAGES.schedule} />
                 <div className="space-y-2 mb-6">
                   {SCHEDULE_SLOTS.map(slot => (
@@ -461,7 +554,7 @@ Generate a welcome plan with:
             {/* ── TIME BUDGET ── */}
             {step === 'availability' && (
               <motion.div key="availability" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="w-full">
-                <StepDots steps={STEPS.slice(1, -1)} current={4} />
+                <StepDots steps={progressSteps} current={progressIndex} />
                 <AIGuide message={AI_MESSAGES.availability} />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
                   {COMMITMENTS.map(item => (
@@ -531,7 +624,7 @@ Generate a welcome plan with:
             {/* ── STUDY STYLE ── */}
             {step === 'style' && (
               <motion.div key="style" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="w-full">
-                <StepDots steps={STEPS.slice(1, -1)} current={5} />
+                <StepDots steps={progressSteps} current={progressIndex} />
                 <AIGuide message={AI_MESSAGES.style} />
                 <div className="grid grid-cols-2 gap-3 mb-6">
                   {STUDY_STYLES.map(s => (
