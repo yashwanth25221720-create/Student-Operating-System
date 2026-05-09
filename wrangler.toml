@@ -1,0 +1,11 @@
+# Cloudflare Workers — static assets from Vite (`npm run build` outputs ./dist)
+# Deploy: `npm run build && npx wrangler deploy`
+#
+# Edit `name` to match your Cloudflare Workers/Pages project if required.
+
+name = "sos-app"
+compatibility_date = "2025-05-01"
+
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"
