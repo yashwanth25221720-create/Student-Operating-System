@@ -1,0 +1,36 @@
+{
+  "name": "StudySession",
+  "type": "object",
+  "properties": {
+    "subject": {
+      "type": "string"
+    },
+    "duration_minutes": {
+      "type": "number"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "pomodoro",
+        "deep_focus",
+        "review",
+        "practice"
+      ],
+      "default": "pomodoro"
+    },
+    "xp_earned": {
+      "type": "number",
+      "default": 0
+    },
+    "goal_id": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "subject",
+    "duration_minutes"
+  ]
+}

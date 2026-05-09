@@ -1,0 +1,38 @@
+{
+  "name": "Note",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string",
+      "description": "Rich text content"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "note",
+        "summary",
+        "flashcard_set",
+        "mindmap"
+      ],
+      "default": "note"
+    },
+    "goal_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title"
+  ]
+}

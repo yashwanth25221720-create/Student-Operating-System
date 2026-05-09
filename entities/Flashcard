@@ -1,0 +1,44 @@
+{
+  "name": "Flashcard",
+  "type": "object",
+  "properties": {
+    "question": {
+      "type": "string"
+    },
+    "answer": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "default": "medium"
+    },
+    "mastery": {
+      "type": "number",
+      "default": 0,
+      "description": "Mastery level 0-100"
+    },
+    "last_reviewed": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "review_count": {
+      "type": "number",
+      "default": 0
+    },
+    "note_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "question",
+    "answer"
+  ]
+}

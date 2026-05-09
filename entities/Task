@@ -1,0 +1,60 @@
+{
+  "name": "Task",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "todo",
+        "in_progress",
+        "done"
+      ],
+      "default": "todo"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ],
+      "default": "medium"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "study",
+        "career",
+        "dev",
+        "ai",
+        "productivity"
+      ]
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "goal_id": {
+      "type": "string",
+      "description": "Linked goal ID"
+    },
+    "xp_reward": {
+      "type": "number",
+      "default": 10
+    },
+    "estimated_minutes": {
+      "type": "number",
+      "default": 15
+    }
+  },
+  "required": [
+    "title"
+  ]
+}
