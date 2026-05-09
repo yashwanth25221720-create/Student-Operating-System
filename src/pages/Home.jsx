@@ -4,7 +4,7 @@ import Dock from '@/components/os/Dock';
 import CommandBar from '@/components/os/CommandBar';
 import ToolPanel from '@/components/workspace/ToolPanel';
 import WelcomeHub from '@/components/workspace/WelcomeHub';
-import AIGuideFloat from '@/components/os/AIGuideFloat';
+import AIGuideFloat from '@/components/os/AIGuideFloat.jsx';
 import KeyboardShortcuts from '@/components/os/KeyboardShortcuts';
 import XPNotification from '@/components/os/XPNotification';
 import { AuroraEffect, ScanlineEffect, NeonCursor, FloatingOrbs } from '@/components/effects/UIEffect';
