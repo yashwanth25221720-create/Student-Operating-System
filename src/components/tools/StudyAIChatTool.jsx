@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Brain, Send, Loader2, Trash2, BookOpen, Target, TrendingUp, Lightbulb } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { base44 } from "@/api/base44Client.js";
 import { useQuery } from '@tanstack/react-query';
 import { Button } from "@/components/ui/button.jsx";
 import ReactMarkdown from 'react-markdown';

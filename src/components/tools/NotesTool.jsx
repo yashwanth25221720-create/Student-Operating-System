@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FileText, Plus, Sparkles, Loader2, X } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { base44 } from "@/api/base44Client.js";
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from "@/components/ui/button.jsx";
 import { Input } from "@/components/ui/input.jsx";

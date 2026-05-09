@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Search, Flame, Star, Zap, Settings, ChevronDown, LogOut, RotateCcw } from 'lucide-react';
 import { useSOS } from '@/lib/SOSContext.jsx';
-import { base44 } from '@/api/base44Client';
+import { base44 } from "@/api/base44Client.js";
 import {
   DropdownMenu,
   DropdownMenuContent,

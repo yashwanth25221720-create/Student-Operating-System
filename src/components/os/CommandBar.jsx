@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, ArrowRight, BookOpen, Briefcase, Code2, Brain, Zap } from 'lucide-react';
 import { useSOS } from '@/lib/SOSContext.jsx';
-import { base44 } from '@/api/base44Client';
+import { base44 } from "@/api/base44Client.js";
 
 const SUGGESTIONS = [
   { text: 'Prepare for GATE CS exam', icon: BookOpen, category: 'study' },

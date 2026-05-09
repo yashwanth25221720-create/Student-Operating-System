@@ -1,7 +1,7 @@
 import React from 'react';
 import { Settings, Monitor, Moon, Zap, BookOpen, Eye, LogOut, Palette, Sparkles, Box, Check } from 'lucide-react';
 import { useSOS } from '@/lib/SOSContext.jsx';
-import { base44 } from '@/api/base44Client';
+import { base44 } from "@/api/base44Client.js";
 import { Button } from "@/components/ui/button.jsx";
 
 const MODES = [

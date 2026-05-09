@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar, Sparkles, Loader2 } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { base44 } from "@/api/base44Client.js";
 import { Button } from "@/components/ui/button.jsx";
 import { Input } from "@/components/ui/input.jsx";
 import { useSOS } from '@/lib/SOSContext.jsx';

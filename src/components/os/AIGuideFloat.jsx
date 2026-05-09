@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Brain, X, Send, Minimize2, Maximize2
 } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { base44 } from "@/api/base44Client.js";
 import { useSOS } from '@/lib/SOSContext.jsx';
 import ReactMarkdown from 'react-markdown';
 

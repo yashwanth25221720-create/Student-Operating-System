@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Brain, Send, Trash2 } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { base44 } from "@/api/base44Client.js";
 import { Button } from "@/components/ui/button.jsx";
 import ReactMarkdown from 'react-markdown';
 import { useSOS } from '@/lib/SOSContext.jsx';

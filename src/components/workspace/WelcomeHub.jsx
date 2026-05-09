@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Sparkles, BookOpen, Briefcase, Code2, Brain, Zap, ArrowRight, Flame, Star, Target } from 'lucide-react';
 import { useSOS } from '@/lib/SOSContext.jsx';
 import { useQuery } from '@tanstack/react-query';
-import { base44 } from '@/api/base44Client';
+import { base44 } from "@/api/base44Client.js";
 import { TiltCard } from '@/components/effects/UIEffect.jsx';
 import DailyBriefing from '@/components/os/DailyBriefing.jsx';
 

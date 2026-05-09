@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Sun, CheckCircle2, Sparkles } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { base44 } from "@/api/base44Client.js";
 import { useSOS } from '@/lib/SOSContext.jsx';
 
 export default function DailyBriefing() {

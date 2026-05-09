@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Timer, Play, Pause, RotateCcw, Coffee, Brain } from 'lucide-react';
 import { Button } from "@/components/ui/button.jsx";
-import { base44 } from '@/api/base44Client';
+import { base44 } from "@/api/base44Client.js";
 import { useSOS } from '@/lib/SOSContext.jsx';
 
 const PRESETS = [

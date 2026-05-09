@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Briefcase, Sparkles, Loader2, Plus, Trash2 } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { base44 } from "@/api/base44Client.js";
 import { Button } from "@/components/ui/button.jsx";
 import { Input } from "@/components/ui/input.jsx";
 import { Textarea } from "@/components/ui/textarea.jsx";
