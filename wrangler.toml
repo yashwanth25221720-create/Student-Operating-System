@@ -3,7 +3,7 @@
 #
 # Edit `name` to match your Cloudflare Workers/Pages project if required.
 
-name = "sos-app"
+name = "sos"
 compatibility_date = "2025-05-01"
 
 [assets]
