@@ -192,6 +192,12 @@ export default function Onboarding() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [aiPlan, setAiPlan] = useState(null);
 
+  useEffect(() => {
+    if (localStorage.getItem('sos_onboarding_done') === 'true') {
+      navigate('/', { replace: true });
+    }
+  }, [navigate]);
+
   const needsExamDetails = profile.goals.includes('exam_prep') || profile.identity === 'competitive';
 
   const STEPS = useMemo(() => {
@@ -257,8 +263,10 @@ export default function Onboarding() {
 
   const generateAIPlan = async () => {
     setIsGenerating(true);
-    const result = await base44.integrations.Core.InvokeLLM({
-      prompt: `Create a personalized student OS profile for:
+    const launchStepIndex = STEPS.indexOf('launch');
+    try {
+      const result = await base44.integrations.Core.InvokeLLM({
+        prompt: `Create a personalized student OS profile for:
 Name: ${profile.name}
 Identity: ${profile.identity}
 Goals: ${profile.goals.join(', ')}
@@ -275,20 +283,38 @@ Generate a welcome plan with:
 2. Top 3 recommended focus areas for this week
 3. A daily routine suggestion
 4. 3 specific first actions they should take right now`,
-      response_json_schema: {
-        type: "object",
-        properties: {
-          greeting: { type: "string" },
-          focus_areas: { type: "array", items: { type: "string" } },
-          daily_routine: { type: "string" },
-          first_actions: { type: "array", items: { type: "object", properties: { action: { type: "string" }, tool: { type: "string" }, why: { type: "string" } } } }
+        response_json_schema: {
+          type: "object",
+          properties: {
+            greeting: { type: "string" },
+            focus_areas: { type: "array", items: { type: "string" } },
+            daily_routine: { type: "string" },
+            first_actions: { type: "array", items: { type: "object", properties: { action: { type: "string" }, tool: { type: "string" }, why: { type: "string" } } } }
+          }
         }
-      }
-    });
-    setAiPlan(result);
-    setIsGenerating(false);
-    // Auto-advance after plan loads
-    setTimeout(() => setStepIndex(STEPS.indexOf('launch')), 1500);
+      });
+      setAiPlan(result);
+    } catch (error) {
+      // Keep onboarding unblocked even if AI endpoint fails.
+      setAiPlan({
+        greeting: `Welcome ${profile.name || 'Explorer'}! Your SOS workspace is ready.`,
+        focus_areas: [
+          'Set your top 3 priorities for this week',
+          'Start your first focus session',
+          'Track daily progress and keep your streak alive',
+        ],
+        daily_routine: 'Plan your day first, then begin with one focused study sprint.',
+        first_actions: [
+          { action: 'Create today’s main goal', tool: 'Goals', why: 'A clear target improves focus.' },
+          { action: 'Start a 25-minute focus timer', tool: 'Timer', why: 'Quick wins build momentum.' },
+          { action: 'Add your next 3 tasks', tool: 'Tasks', why: 'Execution is easier with a simple queue.' },
+        ],
+      });
+    } finally {
+      setIsGenerating(false);
+      // Always continue so users can launch dashboard.
+      setTimeout(() => setStepIndex(launchStepIndex >= 0 ? launchStepIndex : STEPS.length - 1), 800);
+    }
   };
 
   const handleLaunch = () => {
