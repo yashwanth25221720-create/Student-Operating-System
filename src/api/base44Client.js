@@ -127,42 +127,55 @@ const callConfiguredAiEndpoint = async ({ prompt, response_json_schema }) => {
   return data.result ?? data.content ?? data;
 };
 
-const callOpenAiDirectly = async ({ prompt, response_json_schema }) => {
-  const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+const callGeminiApi = async ({ prompt, response_json_schema }) => {
+  const apiKey = import.meta.env.VITE_GOOGLE_AI_API_KEY;
   if (!apiKey) {
-    throw new Error('AI is not configured. Set VITE_AI_ENDPOINT or VITE_OPENAI_API_KEY in .env.local.');
+    throw new Error('AI is not configured. Set VITE_AI_ENDPOINT or VITE_GOOGLE_AI_API_KEY in .env.local.');
   }
 
-  const model = import.meta.env.VITE_OPENAI_MODEL || 'gpt-4.1-mini';
-  const wantsJson = Boolean(response_json_schema);
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${apiKey}`,
+  const model = import.meta.env.VITE_GOOGLE_AI_MODEL || 'gemini-1.5-flash';
+  const systemPrompt = 'You are a helpful AI assistant for students. Answer concisely and accurately.';
+  
+  const requestBody = {
+    system_instruction: { parts: { text: systemPrompt } },
+    contents: {
+      parts: [
+        {
+          text: `${prompt}${buildJsonInstruction(response_json_schema)}`
+        }
+      ]
     },
-    body: JSON.stringify({
-      model,
-      messages: [{ role: 'user', content: `${prompt}${buildJsonInstruction(response_json_schema)}` }],
-      response_format: wantsJson ? { type: 'json_object' } : undefined,
+    generation_config: {
       temperature: 0.7,
-    }),
-  });
+      top_p: 0.95,
+      max_output_tokens: 2048,
+      response_mime_type: response_json_schema ? 'application/json' : 'text/plain'
+    }
+  };
+
+  const response = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestBody)
+    }
+  );
 
   if (!response.ok) {
     const text = await response.text();
-    throw new Error(`OpenAI request failed: ${response.status} ${text}`);
+    throw new Error(`Google Gemini API failed: ${response.status} ${text}`);
   }
 
   const data = await response.json();
-  const content = data.choices?.[0]?.message?.content || '';
-  return wantsJson ? JSON.parse(content) : content;
+  const content = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  return response_json_schema ? JSON.parse(content) : content;
 };
 
 const InvokeLLM = async (request) => {
   const endpointResult = await callConfiguredAiEndpoint(request);
   if (endpointResult !== null) return endpointResult;
-  return callOpenAiDirectly(request);
+  return callGeminiApi(request);
 };
 
 export const base44 = {

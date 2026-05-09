@@ -18,11 +18,11 @@ export default function TimerTool() {
   const [sessionType, setSessionType] = useState('focus');
   const [sessions, setSessions] = useState(0);
   const { addXp, modeConfig } = useSOS();
-  const intervalRef = useRef(null);
+  const intervalRef = useRef(/** @type {number | null} */ (null));
 
   useEffect(() => {
     if (isRunning && seconds > 0) {
-      intervalRef.current = setInterval(() => setSeconds(s => s - 1), 1000);
+      intervalRef.current = window.setInterval(() => setSeconds(s => s - 1), 1000);
     } else if (seconds === 0 && isRunning) {
       setIsRunning(false);
       if (sessionType !== 'break') {
@@ -36,10 +36,14 @@ export default function TimerTool() {
         });
       }
     }
-    return () => clearInterval(intervalRef.current);
-  }, [isRunning, seconds]);
+    return () => {
+      if (intervalRef.current !== null) {
+        window.clearInterval(intervalRef.current);
+      }
+    };
+  }, [isRunning, seconds, sessionType, totalSeconds, addXp]);
 
-  const setPreset = (preset) => {
+  const setPreset = /** @param {typeof PRESETS[number]} preset */ (preset) => {
     setIsRunning(false);
     setSeconds(preset.minutes * 60);
     setTotalSeconds(preset.minutes * 60);

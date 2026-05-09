@@ -1,7 +1,5 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
 
-const SOSContext = createContext(null);
-
 const UI_MODES = {
   lite: { label: 'Lite', animations: false, glass: false, glow: false },
   balanced: { label: 'Balanced', animations: true, glass: false, glow: false },
@@ -120,18 +118,72 @@ export const BG_3D = {
 
 const WORKSPACES = ['study', 'career', 'dev', 'ai', 'productivity'];
 
+/**
+ * @typedef {keyof typeof COLOR_THEMES} ThemeKey
+ * @typedef {keyof typeof UI_MODES} UIModeKey
+ * @typedef {keyof typeof UI_EFFECTS} UIEffectKey
+ * @typedef {keyof typeof BG_3D} BG3DKey
+ * @typedef {typeof WORKSPACES[number]} WorkspaceKey
+ * @typedef {{
+ *   uiMode: UIModeKey;
+ *   setUiMode: React.Dispatch<React.SetStateAction<UIModeKey>>;
+ *   modeConfig: {
+ *     animations: boolean;
+ *     glass: boolean;
+ *     glow: boolean;
+ *   };
+ *   modeClass: string;
+ *   colorTheme: ThemeKey;
+ *   setColorTheme: React.Dispatch<React.SetStateAction<ThemeKey>>;
+ *   activeEffect: UIEffectKey;
+ *   setActiveEffect: React.Dispatch<React.SetStateAction<UIEffectKey>>;
+ *   bg3d: BG3DKey;
+ *   setBg3d: React.Dispatch<React.SetStateAction<BG3DKey>>;
+ *   activeWorkspace: WorkspaceKey;
+ *   setActiveWorkspace: React.Dispatch<React.SetStateAction<WorkspaceKey>>;
+ *   commandBarOpen: boolean;
+ *   setCommandBarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+ *   activeTool: any;
+ *   setActiveTool: React.Dispatch<React.SetStateAction<any>>;
+ *   xp: number;
+ *   level: number;
+ *   streak: number;
+ *   addXp: (amount: number) => void;
+ *   recentActions: any[];
+ *   addRecentAction: (action: any) => void;
+ *   UI_MODES: typeof UI_MODES;
+ *   WORKSPACES: readonly string[];
+ *   COLOR_THEMES: typeof COLOR_THEMES;
+ *   UI_EFFECTS: typeof UI_EFFECTS;
+ *   BG_3D: typeof BG_3D;
+ *   profile: any;
+ * }} SOSContextType
+ */
+const SOSContext = createContext(/** @type {SOSContextType | null} */ (null));
+
+/**
+ * @param {{ children: React.ReactNode }} props
+ */
 export function SOSProvider({ children }) {
-  const [uiMode, setUiMode] = useState('pro');
-  const [colorTheme, setColorTheme] = useState(() => localStorage.getItem('sos_theme') || 'cyber');
-  const [activeEffect, setActiveEffect] = useState(() => localStorage.getItem('sos_effect') || 'aurora');
-  const [bg3d, setBg3d] = useState(() => localStorage.getItem('sos_bg3d') || 'none');
-  const [activeWorkspace, setActiveWorkspace] = useState('study');
+  const [uiMode, setUiMode] = useState(/** @type {keyof typeof UI_MODES} */ ('pro'));
+  const [colorTheme, setColorTheme] = useState(
+    /** @type {keyof typeof COLOR_THEMES} */ (localStorage.getItem('sos_theme') || 'cyber')
+  );
+  const [activeEffect, setActiveEffect] = useState(
+    /** @type {keyof typeof UI_EFFECTS} */ (localStorage.getItem('sos_effect') || 'aurora')
+  );
+  const [bg3d, setBg3d] = useState(
+    /** @type {keyof typeof BG_3D} */ (localStorage.getItem('sos_bg3d') || 'none')
+  );
+  const [activeWorkspace, setActiveWorkspace] = useState(
+    /** @type {typeof WORKSPACES[number]} */ ('study')
+  );
   const [commandBarOpen, setCommandBarOpen] = useState(false);
   const [activeTool, setActiveTool] = useState(null);
   const [xp, setXp] = useState(() => parseInt(localStorage.getItem('sos_xp') || '1250'));
   const [level, setLevel] = useState(() => parseInt(localStorage.getItem('sos_level') || '5'));
   const [streak, setStreak] = useState(7);
-  const [recentActions, setRecentActions] = useState([]);
+  const [recentActions, setRecentActions] = useState(/** @type {any[]} */ ([]));
 
   // Load saved profile from onboarding
   const savedProfile = (() => {
@@ -150,7 +202,7 @@ export function SOSProvider({ children }) {
   useEffect(() => { localStorage.setItem('sos_effect', activeEffect); }, [activeEffect]);
   useEffect(() => { localStorage.setItem('sos_bg3d', bg3d); }, [bg3d]);
 
-  const addXp = useCallback((amount) => {
+  const addXp = useCallback(/** @type {(amount: number) => void} */ ((amount) => {
     setXp(prev => {
       const newXp = prev + amount;
       const newLevel = Math.floor(newXp / 500) + 1;
@@ -159,11 +211,11 @@ export function SOSProvider({ children }) {
       localStorage.setItem('sos_level', String(newLevel));
       return newXp;
     });
-  }, []);
+  }), []);
 
-  const addRecentAction = useCallback((action) => {
+  const addRecentAction = useCallback(/** @type {(action: any) => void} */ ((action) => {
     setRecentActions(prev => [action, ...prev].slice(0, 10));
-  }, []);
+  }), []);
 
   const modeConfig = UI_MODES[uiMode];
   const modeClass = uiMode === 'reading' ? 'reading-mode' :
