@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Layers, Sparkles, Loader2, Check, X as XIcon } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useSOS } from '@/lib/SOSContext';
+import { Button } from "@/components/ui/button.jsx";
+import { Input } from "@/components/ui/input.jsx";
+import { useSOS } from '@/lib/SOSContext.jsx';
 
 export default function FlashcardsTool() {
   const [mode, setMode] = useState('list'); // list, study, generate

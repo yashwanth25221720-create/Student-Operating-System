@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, TrendingUp } from 'lucide-react';
-import { useSOS } from '@/lib/SOSContext';
+import { useSOS } from '@/lib/SOSContext.jsx';
 
 export default function XPNotification() {
   const { xp, level } = useSOS();

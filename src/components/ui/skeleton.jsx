@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils.js"
 
 function Skeleton({
   className,

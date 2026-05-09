@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Search, Flame, Star, Zap, Settings, ChevronDown, LogOut, RotateCcw } from 'lucide-react';
-import { useSOS } from '@/lib/SOSContext';
+import { useSOS } from '@/lib/SOSContext.jsx';
 import { base44 } from '@/api/base44Client';
 import {
   DropdownMenu,
@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu.jsx";
 
 const WORKSPACE_LABELS = {
   study: '📚 Study',

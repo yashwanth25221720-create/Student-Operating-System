@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, ArrowRight, BookOpen, Briefcase, Code2, Brain, Zap } from 'lucide-react';
-import { useSOS } from '@/lib/SOSContext';
+import { useSOS } from '@/lib/SOSContext.jsx';
 import { base44 } from '@/api/base44Client';
 
 const SUGGESTIONS = [

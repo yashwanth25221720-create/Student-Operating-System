@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Calendar, Sparkles, Loader2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useSOS } from '@/lib/SOSContext';
+import { Button } from "@/components/ui/button.jsx";
+import { Input } from "@/components/ui/input.jsx";
+import { useSOS } from '@/lib/SOSContext.jsx';
 import { addDays, startOfWeek } from 'date-fns';
 
 const HOURS = Array.from({ length: 14 }, (_, i) => i + 7); // 7am to 8pm

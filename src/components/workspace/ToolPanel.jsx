@@ -1,19 +1,19 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
-import { useSOS } from '@/lib/SOSContext';
-import NotesTool from '@/components/tools/NotesTool';
-import FlashcardsTool from '@/components/tools/FlashcardsTool';
-import TimerTool from '@/components/tools/TimerTool';
-import AIChatTool from '@/components/tools/AIChatTool';
-import TasksTool from '@/components/tools/TasksTool';
-import GoalsTool from '@/components/tools/GoalsTool';
-import ResumeBuilderTool from '@/components/tools/ResumeBuilderTool';
-import CodePlaygroundTool from '@/components/tools/CodePlaygroundTool';
-import PlannerTool from '@/components/tools/PlannerTool';
-import SettingsTool from '@/components/tools/SettingsTool';
-import SmartCalendarTool from '@/components/tools/SmartCalendarTool';
-import StudyAIChatTool from '@/components/tools/StudyAIChatTool';
+import { useSOS } from '@/lib/SOSContext.jsx';
+import NotesTool from '@/components/tools/NotesTool.jsx';
+import FlashcardsTool from '@/components/tools/FlashcardsTool.jsx';
+import TimerTool from '@/components/tools/TimerTool.jsx';
+import AIChatTool from '@/components/tools/AIChatTool.jsx';
+import TasksTool from '@/components/tools/TasksTool.jsx';
+import GoalsTool from '@/components/tools/GoalsTool.jsx';
+import ResumeBuilderTool from '@/components/tools/ResumeBuilderTool.jsx';
+import CodePlaygroundTool from '@/components/tools/CodePlaygroundTool.jsx';
+import PlannerTool from '@/components/tools/PlannerTool.jsx';
+import SettingsTool from '@/components/tools/SettingsTool.jsx';
+import SmartCalendarTool from '@/components/tools/SmartCalendarTool.jsx';
+import StudyAIChatTool from '@/components/tools/StudyAIChatTool.jsx';
 
 const TOOLS = {
   notes: NotesTool,

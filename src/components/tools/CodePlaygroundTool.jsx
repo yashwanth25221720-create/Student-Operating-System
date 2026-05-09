@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Code2, Sparkles, Loader2, Copy, Check } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button.jsx";
+import { Textarea } from "@/components/ui/textarea.jsx";
+import { Input } from "@/components/ui/input.jsx";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.jsx";
 import ReactMarkdown from 'react-markdown';
-import { useSOS } from '@/lib/SOSContext';
+import { useSOS } from '@/lib/SOSContext.jsx';
 
 export default function CodePlaygroundTool() {
   const [code, setCode] = useState('');

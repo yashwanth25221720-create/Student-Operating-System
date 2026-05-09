@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { FileText, Timer, Brain, Briefcase, Code2,
   CheckSquare, Calendar, Target, Settings, Layers, CalendarDays, Sparkles
 } from 'lucide-react';
-import { useSOS } from '@/lib/SOSContext';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useSOS } from '@/lib/SOSContext.jsx';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip.jsx";
 
 const DOCK_ITEMS = [
   { id: 'notes', icon: FileText, label: 'Notes', color: 'text-chart-1' },
