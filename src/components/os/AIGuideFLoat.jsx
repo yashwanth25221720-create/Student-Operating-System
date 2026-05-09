@@ -4,7 +4,7 @@ import {
   Brain, X, Send, Minimize2, Maximize2
 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
-import { useSOS } from '@/lib/SOSContext';
+import { useSOS } from '@/lib/SOSContext.jsx';
 import ReactMarkdown from 'react-markdown';
 
 const CONTEXTUAL_PROMPTS = {

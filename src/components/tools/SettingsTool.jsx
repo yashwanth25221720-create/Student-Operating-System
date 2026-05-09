@@ -1,8 +1,8 @@
 import React from 'react';
 import { Settings, Monitor, Moon, Zap, BookOpen, Eye, LogOut, Palette, Sparkles, Box, Check } from 'lucide-react';
-import { useSOS } from '@/lib/SOSContext';
+import { useSOS } from '@/lib/SOSContext.jsx';
 import { base44 } from '@/api/base44Client';
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button.jsx";
 
 const MODES = [
   { id: 'lite', label: 'Lite', desc: 'Minimal, fast', icon: Zap },

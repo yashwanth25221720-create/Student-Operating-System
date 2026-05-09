@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, BookOpen, Briefcase, Code2, Brain, Zap, ArrowRight, Flame, Star, Target } from 'lucide-react';
-import { useSOS } from '@/lib/SOSContext';
+import { useSOS } from '@/lib/SOSContext.jsx';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { TiltCard } from '@/components/effects/UIEffect';
-import DailyBriefing from '@/components/os/DailyBriefing';
+import { TiltCard } from '@/components/effects/UIEffect.jsx';
+import DailyBriefing from '@/components/os/DailyBriefing.jsx';
 
 const QUICK_ACTIONS = [
   { icon: BookOpen, label: 'Study', desc: 'Notes, flashcards, revision', workspace: 'study', tool: 'notes', gradient: 'from-cyan-500/10 to-blue-500/10 border-cyan-500/20' },

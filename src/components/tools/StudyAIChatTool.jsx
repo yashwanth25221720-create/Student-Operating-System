@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Brain, Send, Loader2, Trash2, BookOpen, Target, TrendingUp, Lightbulb } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button.jsx";
 import ReactMarkdown from 'react-markdown';
-import { useSOS } from '@/lib/SOSContext';
+import { useSOS } from '@/lib/SOSContext.jsx';
 
 const QUICK_PROMPTS = [
   { icon: BookOpen,   label: 'Summarize my notes',     prompt: 'Summarize all my recent notes and highlight key topics I should review.' },

@@ -7,8 +7,8 @@ import {
   Clock, ChevronRight, Sparkles, Check,
   Moon, Sun, Coffee, Rocket, GraduationCap, Trophy, Star
 } from 'lucide-react';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button.jsx";
+import { Input } from "@/components/ui/input.jsx";
 
 // ─── Step definitions ─────────────────────────────────────────────────────────
 const BASE_STEPS = ['intro', 'name', 'identity', 'goals', 'schedule', 'availability', 'style', 'ai_plan', 'launch'];

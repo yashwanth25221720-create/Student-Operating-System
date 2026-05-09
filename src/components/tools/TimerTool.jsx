@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Timer, Play, Pause, RotateCcw, Coffee, Brain } from 'lucide-react';
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button.jsx";
 import { base44 } from '@/api/base44Client';
-import { useSOS } from '@/lib/SOSContext';
+import { useSOS } from '@/lib/SOSContext.jsx';
 
 const PRESETS = [
   { label: '25 min', minutes: 25, type: 'focus', icon: Brain },

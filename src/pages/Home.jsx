@@ -1,13 +1,13 @@
 import React, { Suspense, lazy } from 'react';
-import TopBar from '@/components/os/TopBar';
-import Dock from '@/components/os/Dock';
-import CommandBar from '@/components/os/CommandBar';
-import ToolPanel from '@/components/workspace/ToolPanel';
-import WelcomeHub from '@/components/workspace/WelcomeHub';
-import AIGuideFloat from '@/components/os/AIGuideFloat';
-import KeyboardShortcuts from '@/components/os/KeyboardShortcuts';
-import XPNotification from '@/components/os/XPNotification';
-import { AuroraEffect, ScanlineEffect, NeonCursor, FloatingOrbs } from '@/components/effects/UIEffect';
+import TopBar from '@/components/os/TopBar.jsx';
+import Dock from '@/components/os/Dock.jsx';
+import CommandBar from '@/components/os/CommandBar.jsx';
+import ToolPanel from '@/components/workspace/ToolPanel.jsx';
+import WelcomeHub from '@/components/workspace/WelcomeHub.jsx';
+import AIGuideFloat from '@/components/os/AIGuideFloat.jsx';
+import KeyboardShortcuts from '@/components/os/KeyboardShortcuts.jsx';
+import XPNotification from '@/components/os/XPNotification.jsx';
+import { AuroraEffect, ScanlineEffect, NeonCursor, FloatingOrbs } from '@/components/effects/UIEffect.jsx';
 import { useSOS } from '@/lib/SOSContext';
 
 const ThreeBackground = lazy(() => import('@/components/effects/ThreeBackground'));

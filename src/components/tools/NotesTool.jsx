@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import { FileText, Plus, Sparkles, Loader2, X } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useSOS } from '@/lib/SOSContext';
+import { Button } from "@/components/ui/button.jsx";
+import { Input } from "@/components/ui/input.jsx";
+import { Textarea } from "@/components/ui/textarea.jsx";
+import { useSOS } from '@/lib/SOSContext.jsx';
 
 export default function NotesTool() {
   const [showCreate, setShowCreate] = useState(false);
