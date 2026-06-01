@@ -8,7 +8,7 @@ import { useSOS } from '@/lib/SOSContext.jsx';
 
 export default function AIChatTool() {
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: "Hey! I'm your SOS AI assistant. Ask me anything — from explaining complex topics to generating study plans, debugging code, or career advice. What's on your mind?" }
+    { role: 'assistant', content: "Hey there! I'm your SOS AI assistant. Need help with anything - study tips, code problems, career advice, or just want to brainstorm? Just ask!" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +29,7 @@ export default function AIChatTool() {
 
     const contextStr = messages.slice(-6).map(m => `${m.role}: ${m.content}`).join('\n');
     const result = await base44.integrations.Core.InvokeLLM({
-      prompt: `You are SOS AI — a brilliant, friendly study & career assistant for students. Be concise, clear, and helpful. Use markdown formatting.
+      prompt: `You are SOS AI - a friendly, helpful study & career assistant for students. Be concise and clear. Use markdown formatting.
 
 Previous conversation:
 ${contextStr}

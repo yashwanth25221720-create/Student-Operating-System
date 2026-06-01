@@ -18,7 +18,7 @@ export default function WelcomeHub() {
   const { setCommandBarOpen, setActiveWorkspace, setActiveTool, xp, level, streak, modeConfig, profile } = useSOS();
   const firstName = profile?.name?.split(' ')?.[0] || null;
   const hour = new Date().getHours();
-  const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  const greeting = hour < 12 ? 'Hey, good morning' : hour < 17 ? 'Hey, good afternoon' : 'Hey, good evening';
 
   const { data: goals = [] } = useQuery({
     queryKey: ['goals'],
@@ -87,14 +87,14 @@ export default function WelcomeHub() {
           <Sparkles className="w-3 h-3" />
           <span>Your AI-powered student OS</span>
         </div>
-        <p className="text-sm text-muted-foreground mb-1">{greeting}{firstName ? `, ${firstName}` : ''} 👋</p>
+        <p className="text-sm text-muted-foreground mb-1">{greeting}{firstName ? `, ${firstName}!` : ' there!'} 👋</p>
         <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-3">
           What will you
           <span className={`text-primary ${modeConfig.glow ? 'glow-text-primary' : ''}`}> achieve </span>
           today?
         </h1>
         <p className="text-muted-foreground text-sm md:text-base max-w-lg mx-auto">
-          Express your intent. SOS interprets, plans, and executes.
+          Just tell me what you want to do - I'll help you figure out how to make it happen.
         </p>
       </motion.div>
 
