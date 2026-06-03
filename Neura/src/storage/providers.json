@@ -1,0 +1,2074 @@
+[
+  {
+    "id": "01ai",
+    "type": "openai-compatible",
+    "displayName": "01.AI (Yi Models)",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "frontier",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "streaming"
+      ],
+      "keyUrl": "https://platform.lingyiwanwu.com/apikeys",
+      "docsUrl": "https://platform.lingyiwanwu.com/docs"
+    }
+  },
+  {
+    "id": "ai21",
+    "type": "manual",
+    "displayName": "AI21 Labs",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "frontier",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "reasoning",
+        "long-context"
+      ],
+      "keyUrl": "https://studio.ai21.com/account/api-key",
+      "docsUrl": "https://docs.ai21.com/reference"
+    }
+  },
+  {
+    "id": "aimlapi",
+    "type": "openai-compatible",
+    "displayName": "AIML API",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "image-generation",
+        "embeddings",
+        "streaming",
+        "gateway"
+      ],
+      "keyUrl": "https://aimlapi.com/app/keys",
+      "docsUrl": "https://docs.aimlapi.com/api-references/text-models-llm"
+    }
+  },
+  {
+    "id": "aisphere",
+    "type": "manual",
+    "displayName": "AISphere",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "asian-cloud",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat"
+      ],
+      "keyUrl": "https://aisphere.com/",
+      "docsUrl": "https://aisphere.com/"
+    }
+  },
+  {
+    "id": "akash",
+    "type": "manual",
+    "displayName": "Akash Network",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "decentralized",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "gpu"
+      ],
+      "keyUrl": "https://console.akash.network/",
+      "docsUrl": "https://akash.network/docs/"
+    }
+  },
+  {
+    "id": "anthropic",
+    "type": "anthropic-compatible",
+    "displayName": "Anthropic Claude",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "frontier",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "tools",
+        "streaming",
+        "long-context"
+      ],
+      "keyUrl": "https://console.anthropic.com/settings/keys",
+      "docsUrl": "https://docs.anthropic.com/en/api/getting-started"
+    }
+  },
+  {
+    "id": "anyscale",
+    "type": "openai-compatible",
+    "displayName": "Anyscale Endpoints",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "streaming"
+      ],
+      "keyUrl": "https://console.anyscale.com/credentials",
+      "docsUrl": "https://docs.anyscale.com/llm/serving/api-reference"
+    }
+  },
+  {
+    "id": "baidu-qianfan",
+    "type": "manual",
+    "displayName": "Baidu Qianfan",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "asian-cloud",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "embeddings"
+      ],
+      "keyUrl": "https://console.bce.baidu.com/qianfan/ais/console/applicationConsole/application",
+      "docsUrl": "https://cloud.baidu.com/doc/WENXINWORKSHOP/index.html"
+    }
+  },
+  {
+    "id": "banana",
+    "type": "manual",
+    "displayName": "Banana.dev",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "community",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "image-generation",
+        "gpu"
+      ],
+      "keyUrl": "https://app.banana.dev/",
+      "docsUrl": "https://docs.banana.dev/"
+    }
+  },
+  {
+    "id": "baseten",
+    "type": "manual",
+    "displayName": "Baseten",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "image-generation",
+        "gpu"
+      ],
+      "keyUrl": "https://app.baseten.co/settings/api_keys",
+      "docsUrl": "https://docs.baseten.co/api-reference"
+    }
+  },
+  {
+    "id": "beam",
+    "type": "manual",
+    "displayName": "Beam Cloud",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "community",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "image-generation",
+        "gpu"
+      ],
+      "keyUrl": "https://cloud.beam.cloud/settings/api-keys",
+      "docsUrl": "https://docs.beam.cloud/v2/api"
+    }
+  },
+  {
+    "id": "bittensor",
+    "type": "manual",
+    "displayName": "Bittensor",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "decentralized",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "gpu"
+      ],
+      "keyUrl": "https://bittensor.com/",
+      "docsUrl": "https://docs.bittensor.com/"
+    }
+  },
+  {
+    "id": "cerebras",
+    "type": "openai-compatible",
+    "displayName": "Cerebras Cloud",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "streaming"
+      ],
+      "keyUrl": "https://cloud.cerebras.ai/platform/",
+      "docsUrl": "https://inference-docs.cerebras.ai/api-reference/chat-completions"
+    }
+  },
+  {
+    "id": "cloudflare-workers-ai",
+    "type": "cloudflare-workers-ai",
+    "displayName": "Cloudflare Workers AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "community",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "image-generation",
+        "embeddings",
+        "gpu"
+      ],
+      "keyUrl": "https://dash.cloudflare.com/profile/api-tokens",
+      "docsUrl": "https://developers.cloudflare.com/workers-ai/"
+    }
+  },
+  {
+    "id": "codegpt",
+    "type": "manual",
+    "displayName": "CodeGPT API",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "coding",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "coding",
+        "tools"
+      ],
+      "keyUrl": "https://codegpt.co/",
+      "docsUrl": "https://docs.codegpt.co/"
+    }
+  },
+  {
+    "id": "cohere",
+    "type": "cohere-compatible",
+    "displayName": "Cohere",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "frontier",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "reasoning",
+        "embeddings",
+        "reranking",
+        "tools",
+        "streaming"
+      ],
+      "keyUrl": "https://dashboard.cohere.com/api-keys",
+      "docsUrl": "https://docs.cohere.com/reference/about"
+    }
+  },
+  {
+    "id": "continue-dev",
+    "type": "manual",
+    "displayName": "Continue Dev Hub",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "coding",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "coding",
+        "tools"
+      ],
+      "keyUrl": "https://continue.dev/",
+      "docsUrl": "https://docs.continue.dev/"
+    }
+  },
+  {
+    "id": "crusoe",
+    "type": "manual",
+    "displayName": "Crusoe Cloud",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "community",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "gpu"
+      ],
+      "keyUrl": "https://console.crusoecloud.com/",
+      "docsUrl": "https://docs.crusoecloud.com/reference"
+    }
+  },
+  {
+    "id": "cursor",
+    "type": "manual",
+    "displayName": "Cursor API Integrations",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "coding",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "coding",
+        "tools"
+      ],
+      "keyUrl": "https://cursor.com/settings",
+      "docsUrl": "https://docs.cursor.com/"
+    }
+  },
+  {
+    "id": "custom-openai",
+    "type": "openai-compatible",
+    "displayName": "Custom OpenAI-Compatible Endpoint",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "gateway",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "embeddings",
+        "tools",
+        "streaming",
+        "gateway"
+      ],
+      "keyUrl": "https://platform.openai.com/docs/api-reference",
+      "docsUrl": "https://platform.openai.com/docs/api-reference"
+    }
+  },
+  {
+    "id": "datacrunch",
+    "type": "manual",
+    "displayName": "DataCrunch AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "community",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "gpu"
+      ],
+      "keyUrl": "https://datacrunch.io/",
+      "docsUrl": "https://datacrunch.io/docs"
+    }
+  },
+  {
+    "id": "deepinfra",
+    "type": "openai-compatible",
+    "displayName": "DeepInfra",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "image-generation",
+        "embeddings",
+        "streaming",
+        "gpu"
+      ],
+      "keyUrl": "https://deepinfra.com/dash/api_keys",
+      "docsUrl": "https://deepinfra.com/docs/openai_api"
+    }
+  },
+  {
+    "id": "deepseek",
+    "type": "openai-compatible",
+    "displayName": "DeepSeek",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "frontier",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "tools",
+        "streaming"
+      ],
+      "keyUrl": "https://platform.deepseek.com/api_keys",
+      "docsUrl": "https://api-docs.deepseek.com/"
+    }
+  },
+  {
+    "id": "dify",
+    "type": "manual",
+    "displayName": "Dify AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "experimental",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "tools"
+      ],
+      "keyUrl": "https://cloud.dify.ai/apps",
+      "docsUrl": "https://docs.dify.ai/"
+    }
+  },
+  {
+    "id": "fireworks",
+    "type": "openai-compatible",
+    "displayName": "Fireworks AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "embeddings",
+        "tools",
+        "streaming",
+        "gpu"
+      ],
+      "keyUrl": "https://fireworks.ai/account/api-keys",
+      "docsUrl": "https://docs.fireworks.ai/api-reference/introduction"
+    }
+  },
+  {
+    "id": "flowise",
+    "type": "manual",
+    "displayName": "Flowise AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "experimental",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "tools"
+      ],
+      "keyUrl": "https://flowiseai.com/",
+      "docsUrl": "https://docs.flowiseai.com/"
+    }
+  },
+  {
+    "id": "gemini",
+    "type": "gemini",
+    "displayName": "Google AI Studio (Gemini)",
+    "enabled": true,
+    "healthy": false,
+    "lastCheckedAt": "2026-05-26T07:30:29.698Z",
+    "avgLatencyMs": 262.0664093494415,
+    "failureCount": 16,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "frontier",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "embeddings",
+        "tools",
+        "streaming",
+        "long-context"
+      ],
+      "keyUrl": "https://aistudio.google.com/apikey",
+      "docsUrl": "https://ai.google.dev/gemini-api/docs/api-key"
+    }
+  },
+  {
+    "id": "genesis-cloud",
+    "type": "manual",
+    "displayName": "Genesis Cloud AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "community",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "gpu"
+      ],
+      "keyUrl": "https://www.genesiscloud.com/",
+      "docsUrl": "https://www.genesiscloud.com/docs"
+    }
+  },
+  {
+    "id": "gensyn",
+    "type": "manual",
+    "displayName": "Gensyn AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "decentralized",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "gpu"
+      ],
+      "keyUrl": "https://gensyn.ai/",
+      "docsUrl": "https://gensyn.ai/"
+    }
+  },
+  {
+    "id": "github-models",
+    "type": "openai-compatible",
+    "displayName": "GitHub Models",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "community",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "tools",
+        "streaming"
+      ],
+      "keyUrl": "https://github.com/settings/tokens",
+      "docsUrl": "https://docs.github.com/en/github-models/prototyping-with-ai-models"
+    }
+  },
+  {
+    "id": "gpt4all",
+    "type": "manual",
+    "displayName": "GPT4All",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "local",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "embeddings",
+        "tools",
+        "streaming",
+        "local"
+      ],
+      "keyUrl": "https://gpt4all.io/",
+      "docsUrl": "https://docs.gpt4all.io/"
+    }
+  },
+  {
+    "id": "groq",
+    "type": "groq",
+    "displayName": "Groq",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "tools",
+        "streaming"
+      ],
+      "keyUrl": "https://console.groq.com/keys",
+      "docsUrl": "https://console.groq.com/docs/api-reference"
+    }
+  },
+  {
+    "id": "helicone",
+    "type": "openai-compatible",
+    "displayName": "Helicone AI Gateway",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "gateway",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "tools",
+        "streaming",
+        "gateway"
+      ],
+      "keyUrl": "https://us.helicone.ai/settings/api-keys",
+      "docsUrl": "https://docs.helicone.ai/getting-started/integration-method/openai-proxy"
+    }
+  },
+  {
+    "id": "huawei-modelarts",
+    "type": "manual",
+    "displayName": "Huawei ModelArts",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "asian-cloud",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "gpu"
+      ],
+      "keyUrl": "https://console.huaweicloud.com/iam/",
+      "docsUrl": "https://support.huaweicloud.com/modelarts/"
+    }
+  },
+  {
+    "id": "huggingface",
+    "type": "huggingface-compatible",
+    "displayName": "Hugging Face Inference API",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "community",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "image-generation",
+        "embeddings",
+        "streaming"
+      ],
+      "keyUrl": "https://huggingface.co/settings/tokens",
+      "docsUrl": "https://huggingface.co/docs/api-inference/index"
+    }
+  },
+  {
+    "id": "hyperbolic",
+    "type": "openai-compatible",
+    "displayName": "Hyperbolic AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "image-generation",
+        "streaming",
+        "gpu"
+      ],
+      "keyUrl": "https://app.hyperbolic.xyz/settings",
+      "docsUrl": "https://docs.hyperbolic.xyz/docs/getting-started"
+    }
+  },
+  {
+    "id": "inferless",
+    "type": "manual",
+    "displayName": "Inferless AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "gpu"
+      ],
+      "keyUrl": "https://app.inferless.com/",
+      "docsUrl": "https://docs.inferless.com/"
+    }
+  },
+  {
+    "id": "ionet",
+    "type": "manual",
+    "displayName": "io.net",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "decentralized",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "gpu"
+      ],
+      "keyUrl": "https://io.net/",
+      "docsUrl": "https://docs.io.net/"
+    }
+  },
+  {
+    "id": "jan",
+    "type": "local-openai-compatible",
+    "displayName": "Jan AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "local",
+      "supportsRuntime": true,
+      "modelDiscovery": "local",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "embeddings",
+        "tools",
+        "streaming",
+        "local"
+      ],
+      "keyUrl": "https://jan.ai/",
+      "docsUrl": "https://jan.ai/docs/local-api"
+    }
+  },
+  {
+    "id": "kluster",
+    "type": "openai-compatible",
+    "displayName": "Kluster AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "streaming"
+      ],
+      "keyUrl": "https://platform.kluster.ai/",
+      "docsUrl": "https://docs.kluster.ai/"
+    }
+  },
+  {
+    "id": "koboldcpp",
+    "type": "manual",
+    "displayName": "KoboldCpp",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "local",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "embeddings",
+        "tools",
+        "streaming",
+        "local"
+      ],
+      "keyUrl": "https://github.com/LostRuins/koboldcpp",
+      "docsUrl": "https://github.com/LostRuins/koboldcpp/wiki"
+    }
+  },
+  {
+    "id": "koyeb",
+    "type": "manual",
+    "displayName": "Koyeb AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "experimental",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "gpu"
+      ],
+      "keyUrl": "https://app.koyeb.com/",
+      "docsUrl": "https://www.koyeb.com/docs"
+    }
+  },
+  {
+    "id": "lambda-cloud",
+    "type": "manual",
+    "displayName": "Lambda AI Cloud",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "community",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "gpu"
+      ],
+      "keyUrl": "https://cloud.lambda.ai/api-keys",
+      "docsUrl": "https://docs.lambda.ai/public-cloud/cloud-api/"
+    }
+  },
+  {
+    "id": "langdock",
+    "type": "openai-compatible",
+    "displayName": "Langdock",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "experimental",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "tools",
+        "streaming",
+        "gateway"
+      ],
+      "keyUrl": "https://app.langdock.com/settings/api-keys",
+      "docsUrl": "https://docs.langdock.com/api-endpoints/completion/openai"
+    }
+  },
+  {
+    "id": "lepton",
+    "type": "openai-compatible",
+    "displayName": "Lepton AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "streaming",
+        "gpu"
+      ],
+      "keyUrl": "https://dashboard.lepton.ai/settings",
+      "docsUrl": "https://www.lepton.ai/docs"
+    }
+  },
+  {
+    "id": "llm7",
+    "type": "openai-compatible",
+    "displayName": "LLM7",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "streaming"
+      ],
+      "keyUrl": "https://token.llm7.io/",
+      "docsUrl": "https://github.com/chigwell/llm7.io"
+    }
+  },
+  {
+    "id": "lmstudio",
+    "type": "local-openai-compatible",
+    "displayName": "LM Studio",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "local",
+      "supportsRuntime": true,
+      "modelDiscovery": "local",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "embeddings",
+        "tools",
+        "streaming",
+        "local"
+      ],
+      "keyUrl": "https://lmstudio.ai/",
+      "docsUrl": "https://lmstudio.ai/docs/app/api/endpoints/openai"
+    }
+  },
+  {
+    "id": "localai",
+    "type": "local-openai-compatible",
+    "displayName": "LocalAI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "local",
+      "supportsRuntime": true,
+      "modelDiscovery": "local",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "embeddings",
+        "tools",
+        "streaming",
+        "local"
+      ],
+      "keyUrl": "https://localai.io/",
+      "docsUrl": "https://localai.io/basics/getting_started/"
+    }
+  },
+  {
+    "id": "minimax",
+    "type": "openai-compatible",
+    "displayName": "MiniMax AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "frontier",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "reasoning",
+        "vision",
+        "tools",
+        "streaming"
+      ],
+      "keyUrl": "https://platform.minimaxi.com/user-center/basic-information/interface-key",
+      "docsUrl": "https://www.minimax.io/platform/document"
+    }
+  },
+  {
+    "id": "mistral",
+    "type": "openai-compatible",
+    "displayName": "Mistral AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "frontier",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "embeddings",
+        "tools",
+        "streaming"
+      ],
+      "keyUrl": "https://console.mistral.ai/api-keys",
+      "docsUrl": "https://docs.mistral.ai/api/"
+    }
+  },
+  {
+    "id": "modal",
+    "type": "manual",
+    "displayName": "Modal Labs",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "community",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "image-generation",
+        "gpu"
+      ],
+      "keyUrl": "https://modal.com/settings/tokens",
+      "docsUrl": "https://modal.com/docs/guide/webhooks"
+    }
+  },
+  {
+    "id": "modelfusion",
+    "type": "manual",
+    "displayName": "ModelFusion AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "gateway"
+      ],
+      "keyUrl": "https://modelfusion.ai/",
+      "docsUrl": "https://modelfusion.ai/"
+    }
+  },
+  {
+    "id": "moonshot",
+    "type": "openai-compatible",
+    "displayName": "Moonshot AI (Kimi)",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "frontier",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "long-context",
+        "tools",
+        "streaming"
+      ],
+      "keyUrl": "https://platform.moonshot.ai/console/api-keys",
+      "docsUrl": "https://platform.moonshot.ai/docs/api-reference"
+    }
+  },
+  {
+    "id": "nosana",
+    "type": "manual",
+    "displayName": "Nosana AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "decentralized",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "gpu"
+      ],
+      "keyUrl": "https://nosana.io/",
+      "docsUrl": "https://docs.nosana.io/"
+    }
+  },
+  {
+    "id": "novita",
+    "type": "openai-compatible",
+    "displayName": "Novita AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "image-generation",
+        "streaming",
+        "gpu"
+      ],
+      "keyUrl": "https://novita.ai/settings/key-management",
+      "docsUrl": "https://novita.ai/docs/api-reference/llm/create-chat-completion"
+    }
+  },
+  {
+    "id": "nvidia",
+    "type": "nvidia",
+    "displayName": "NVIDIA NIM",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "community",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "tools",
+        "streaming",
+        "gpu"
+      ],
+      "keyUrl": "https://build.nvidia.com/",
+      "docsUrl": "https://docs.api.nvidia.com/nim/docs/api-quickstart"
+    }
+  },
+  {
+    "id": "octoai",
+    "type": "manual",
+    "displayName": "OctoAI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "image-generation",
+        "gpu"
+      ],
+      "keyUrl": "https://octo.ai/docs/getting-started/how-to-create-an-octoai-access-token",
+      "docsUrl": "https://octo.ai/docs"
+    }
+  },
+  {
+    "id": "ollama",
+    "type": "ollama",
+    "displayName": "Ollama",
+    "enabled": true,
+    "healthy": false,
+    "lastCheckedAt": "2026-05-26T07:30:29.397Z",
+    "avgLatencyMs": 4.517229832708836,
+    "failureCount": 12,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "local",
+      "supportsRuntime": true,
+      "modelDiscovery": "local",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "embeddings",
+        "tools",
+        "streaming",
+        "local"
+      ],
+      "keyUrl": "https://ollama.com/download",
+      "docsUrl": "https://docs.ollama.com/api"
+    }
+  },
+  {
+    "id": "openai",
+    "type": "openai-compatible",
+    "displayName": "OpenAI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "frontier",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "image-generation",
+        "embeddings",
+        "tools",
+        "streaming",
+        "long-context"
+      ],
+      "keyUrl": "https://platform.openai.com/api-keys",
+      "docsUrl": "https://platform.openai.com/docs/api-reference"
+    }
+  },
+  {
+    "id": "opendevin",
+    "type": "manual",
+    "displayName": "OpenDevin Cloud",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "experimental",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "coding",
+        "tools"
+      ],
+      "keyUrl": "https://opendevin.com/",
+      "docsUrl": "https://github.com/OpenDevin/OpenDevin"
+    }
+  },
+  {
+    "id": "openledger",
+    "type": "manual",
+    "displayName": "OpenLedger",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "decentralized",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat"
+      ],
+      "keyUrl": "https://openledger.xyz/",
+      "docsUrl": "https://openledger.xyz/"
+    }
+  },
+  {
+    "id": "openpipe",
+    "type": "openai-compatible",
+    "displayName": "OpenPipe",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "gateway",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "gateway"
+      ],
+      "keyUrl": "https://app.openpipe.ai/settings/api-keys",
+      "docsUrl": "https://docs.openpipe.ai/"
+    }
+  },
+  {
+    "id": "openrouter",
+    "type": "openrouter",
+    "displayName": "OpenRouter",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "embeddings",
+        "tools",
+        "streaming",
+        "long-context",
+        "gateway"
+      ],
+      "keyUrl": "https://openrouter.ai/settings/keys",
+      "docsUrl": "https://openrouter.ai/docs/api-keys"
+    }
+  },
+  {
+    "id": "pawan",
+    "type": "openai-compatible",
+    "displayName": "Pawan API",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "experimental",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "streaming"
+      ],
+      "keyUrl": "https://pawan.krd/",
+      "docsUrl": "https://docs.pawan.krd/"
+    }
+  },
+  {
+    "id": "perplexity",
+    "type": "openai-compatible",
+    "displayName": "Perplexity API",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "reasoning",
+        "streaming"
+      ],
+      "keyUrl": "https://www.perplexity.ai/settings/api",
+      "docsUrl": "https://docs.perplexity.ai/api-reference/chat-completions"
+    }
+  },
+  {
+    "id": "poe",
+    "type": "manual",
+    "displayName": "Poe API",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "gateway"
+      ],
+      "keyUrl": "https://poe.com/api_key",
+      "docsUrl": "https://creator.poe.com/docs/accessing-other-bots-on-poe"
+    }
+  },
+  {
+    "id": "pokt",
+    "type": "manual",
+    "displayName": "POKT Network AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "decentralized",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "gateway"
+      ],
+      "keyUrl": "https://pokt.network/",
+      "docsUrl": "https://docs.pokt.network/"
+    }
+  },
+  {
+    "id": "pollinations",
+    "type": "manual",
+    "displayName": "Pollinations AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "experimental",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "image-generation"
+      ],
+      "keyUrl": "https://pollinations.ai/",
+      "docsUrl": "https://github.com/pollinations/pollinations"
+    }
+  },
+  {
+    "id": "portkey",
+    "type": "openai-compatible",
+    "displayName": "Portkey AI Gateway",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "gateway",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "tools",
+        "streaming",
+        "gateway"
+      ],
+      "keyUrl": "https://app.portkey.ai/api-keys",
+      "docsUrl": "https://portkey.ai/docs/api-reference/introduction"
+    }
+  },
+  {
+    "id": "qwen",
+    "type": "openai-compatible",
+    "displayName": "Alibaba Model Studio (Qwen)",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "asian-cloud",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "embeddings",
+        "tools",
+        "streaming"
+      ],
+      "keyUrl": "https://bailian.console.aliyun.com/?apiKey=1",
+      "docsUrl": "https://help.aliyun.com/zh/model-studio/developer-reference/use-qwen-by-calling-api"
+    }
+  },
+  {
+    "id": "replicate",
+    "type": "manual",
+    "displayName": "Replicate",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "vision",
+        "image-generation",
+        "gpu"
+      ],
+      "keyUrl": "https://replicate.com/account/api-tokens",
+      "docsUrl": "https://replicate.com/docs/reference/http"
+    }
+  },
+  {
+    "id": "runpod",
+    "type": "manual",
+    "displayName": "RunPod Serverless",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "community",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "image-generation",
+        "gpu"
+      ],
+      "keyUrl": "https://www.runpod.io/console/user/settings",
+      "docsUrl": "https://docs.runpod.io/serverless"
+    }
+  },
+  {
+    "id": "sambanova",
+    "type": "openai-compatible",
+    "displayName": "SambaNova Cloud",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "streaming"
+      ],
+      "keyUrl": "https://cloud.sambanova.ai/apis",
+      "docsUrl": "https://docs.sambanova.ai/cloud/docs/api-reference"
+    }
+  },
+  {
+    "id": "sensenova",
+    "type": "manual",
+    "displayName": "SenseNova AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "asian-cloud",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "vision",
+        "image-generation"
+      ],
+      "keyUrl": "https://platform.sensenova.cn/",
+      "docsUrl": "https://platform.sensenova.cn/doc"
+    }
+  },
+  {
+    "id": "siliconflow",
+    "type": "openai-compatible",
+    "displayName": "SiliconFlow",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "embeddings",
+        "tools",
+        "streaming"
+      ],
+      "keyUrl": "https://cloud.siliconflow.cn/account/ak",
+      "docsUrl": "https://docs.siliconflow.cn/api-reference/chat-completions/chat-completions"
+    }
+  },
+  {
+    "id": "sourcegraph-cody",
+    "type": "manual",
+    "displayName": "Sourcegraph Cody API",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "coding",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "coding"
+      ],
+      "keyUrl": "https://sourcegraph.com/cody",
+      "docsUrl": "https://sourcegraph.com/docs/cody"
+    }
+  },
+  {
+    "id": "stepfun",
+    "type": "openai-compatible",
+    "displayName": "StepFun AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "frontier",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "reasoning",
+        "vision",
+        "tools",
+        "streaming"
+      ],
+      "keyUrl": "https://platform.stepfun.com/account/api-keys",
+      "docsUrl": "https://platform.stepfun.com/docs"
+    }
+  },
+  {
+    "id": "tabbyml",
+    "type": "manual",
+    "displayName": "TabbyML",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "coding",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "coding"
+      ],
+      "keyUrl": "https://tabbyml.com/",
+      "docsUrl": "https://tabby.tabbyml.com/docs"
+    }
+  },
+  {
+    "id": "tencent-hunyuan",
+    "type": "manual",
+    "displayName": "Tencent Hunyuan",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "asian-cloud",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision"
+      ],
+      "keyUrl": "https://console.cloud.tencent.com/cam/capi",
+      "docsUrl": "https://cloud.tencent.com/document/product/1729"
+    }
+  },
+  {
+    "id": "text-generation-webui",
+    "type": "manual",
+    "displayName": "Text Generation WebUI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "local",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "embeddings",
+        "tools",
+        "streaming",
+        "local"
+      ],
+      "keyUrl": "https://github.com/oobabooga/text-generation-webui",
+      "docsUrl": "https://github.com/oobabooga/text-generation-webui/wiki"
+    }
+  },
+  {
+    "id": "together",
+    "type": "openai-compatible",
+    "displayName": "Together AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "inference",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "image-generation",
+        "embeddings",
+        "streaming",
+        "gpu"
+      ],
+      "keyUrl": "https://api.together.xyz/settings/api-keys",
+      "docsUrl": "https://docs.together.ai/reference/chat-completions-1"
+    }
+  },
+  {
+    "id": "vastai",
+    "type": "manual",
+    "displayName": "Vast.ai",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "decentralized",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "gpu"
+      ],
+      "keyUrl": "https://cloud.vast.ai/account/",
+      "docsUrl": "https://docs.vast.ai/"
+    }
+  },
+  {
+    "id": "vercel-ai-gateway",
+    "type": "openai-compatible",
+    "displayName": "Vercel AI Gateway",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "gateway",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "tools",
+        "streaming",
+        "gateway"
+      ],
+      "keyUrl": "https://vercel.com/account/settings/tokens",
+      "docsUrl": "https://vercel.com/docs/ai-gateway"
+    }
+  },
+  {
+    "id": "vllm",
+    "type": "local-openai-compatible",
+    "displayName": "vLLM",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "local",
+      "supportsRuntime": true,
+      "modelDiscovery": "local",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "embeddings",
+        "tools",
+        "streaming",
+        "local"
+      ],
+      "keyUrl": "https://docs.vllm.ai/",
+      "docsUrl": "https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html"
+    }
+  },
+  {
+    "id": "volcengine",
+    "type": "openai-compatible",
+    "displayName": "ByteDance Volcano Engine AI",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "asian-cloud",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "tools",
+        "streaming"
+      ],
+      "keyUrl": "https://console.volcengine.com/ark/region:ark+cn-beijing/apiKey",
+      "docsUrl": "https://www.volcengine.com/docs/82379"
+    }
+  },
+  {
+    "id": "windsurf",
+    "type": "manual",
+    "displayName": "Codeium Windsurf API",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "coding",
+      "supportsRuntime": false,
+      "modelDiscovery": "manual",
+      "capabilities": [
+        "chat",
+        "coding",
+        "tools"
+      ],
+      "keyUrl": "https://windsurf.com/",
+      "docsUrl": "https://docs.windsurf.com/"
+    }
+  },
+  {
+    "id": "xai",
+    "type": "openai-compatible",
+    "displayName": "xAI Grok",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "frontier",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "tools",
+        "streaming"
+      ],
+      "keyUrl": "https://console.x.ai/",
+      "docsUrl": "https://docs.x.ai/docs/api-reference"
+    }
+  },
+  {
+    "id": "zhipu",
+    "type": "openai-compatible",
+    "displayName": "Zhipu AI (GLM)",
+    "enabled": false,
+    "healthy": false,
+    "failureCount": 0,
+    "metadata": {
+      "appTitle": "Neura Runtime",
+      "appUrl": "http://localhost",
+      "category": "frontier",
+      "supportsRuntime": true,
+      "modelDiscovery": "dynamic",
+      "capabilities": [
+        "chat",
+        "coding",
+        "reasoning",
+        "vision",
+        "tools",
+        "streaming"
+      ],
+      "keyUrl": "https://open.bigmodel.cn/usercenter/apikeys",
+      "docsUrl": "https://open.bigmodel.cn/dev/api"
+    }
+  }
+]

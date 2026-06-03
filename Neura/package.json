@@ -1,0 +1,34 @@
+{
+  "name": "neura-runtime",
+  "version": "0.1.0",
+  "description": "Provider-agnostic free-tier LLM orchestration runtime for a single-user AI operating system.",
+  "private": true,
+  "license": "UNLICENSED",
+  "bin": {
+    "neura": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "status": "tsx src/index.ts status",
+    "models": "tsx src/index.ts models",
+    "providers": "tsx src/index.ts providers",
+    "quotas": "tsx src/index.ts quotas",
+    "usage": "tsx src/index.ts usage",
+    "ui": "tsx src/index.ts ui"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vitest": "^4.1.7"
+  },
+  "engines": {
+    "node": ">=24.0"
+  }
+}

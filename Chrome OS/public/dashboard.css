@@ -1,0 +1,22 @@
+body {
+  background: #090b10;
+  color: #eef2ff;
+  font: 14px Inter, system-ui, sans-serif;
+  margin: 0;
+}
+
+.halo-ad-popup {
+  display: grid;
+  gap: 10px;
+  min-width: 260px;
+  padding: 16px;
+}
+
+button {
+  background: #8b5cf6;
+  border: 0;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  min-height: 38px;
+}

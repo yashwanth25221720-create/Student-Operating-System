@@ -1,0 +1,82 @@
+[
+  {
+    "providerId": "gemini",
+    "windows": [
+      {
+        "kind": "rpd",
+        "limit": 500,
+        "used": 0,
+        "remaining": 500,
+        "resetAt": "2026-05-27T00:00:00.000Z"
+      },
+      {
+        "kind": "rpm",
+        "limit": 20,
+        "used": 0,
+        "remaining": 20,
+        "resetAt": "2026-05-26T07:31:29.854Z"
+      },
+      {
+        "kind": "tpd",
+        "limit": 1000000,
+        "used": 0,
+        "remaining": 1000000,
+        "resetAt": "2026-05-27T00:00:00.000Z"
+      },
+      {
+        "kind": "tpm",
+        "limit": 60000,
+        "used": 0,
+        "remaining": 60000,
+        "resetAt": "2026-05-26T07:31:29.854Z"
+      }
+    ],
+    "isExhausted": false,
+    "exhaustedUntil": null,
+    "cooldownUntil": null,
+    "raw": {
+      "source": "local_default_quota_preservation"
+    },
+    "updatedAt": "2026-05-26T07:30:29.854Z"
+  },
+  {
+    "providerId": "ollama",
+    "windows": [
+      {
+        "kind": "rpd",
+        "limit": 500,
+        "used": 0,
+        "remaining": 500,
+        "resetAt": "2026-05-27T00:00:00.000Z"
+      },
+      {
+        "kind": "rpm",
+        "limit": 20,
+        "used": 0,
+        "remaining": 20,
+        "resetAt": "2026-05-26T07:31:29.856Z"
+      },
+      {
+        "kind": "tpd",
+        "limit": 1000000,
+        "used": 0,
+        "remaining": 1000000,
+        "resetAt": "2026-05-27T00:00:00.000Z"
+      },
+      {
+        "kind": "tpm",
+        "limit": 60000,
+        "used": 0,
+        "remaining": 60000,
+        "resetAt": "2026-05-26T07:31:29.856Z"
+      }
+    ],
+    "isExhausted": false,
+    "exhaustedUntil": null,
+    "cooldownUntil": null,
+    "raw": {
+      "source": "local_default_quota_preservation"
+    },
+    "updatedAt": "2026-05-26T07:30:29.856Z"
+  }
+]

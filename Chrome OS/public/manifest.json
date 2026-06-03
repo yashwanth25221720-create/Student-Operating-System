@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Halo OS",
+  "description": "A productivity operating system for Chrome's New Tab page.",
+  "version": "0.1.0",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": ["bookmarks", "storage", "tabs", "tabGroups", "favicon", "declarativeNetRequest", "declarativeNetRequestWithHostAccess"],
+  "background": {
+    "service_worker": "serviceWorker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Halo OS",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "filter-engine.js",
+        "youtube-blocker.js",
+        "tracker-blocker.js",
+        "anti-popup.js",
+        "anti-overlay.js",
+        "content.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "host_permissions": ["<all_urls>"]
+}

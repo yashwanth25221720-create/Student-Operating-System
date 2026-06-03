@@ -1,0 +1,14 @@
+name: Local Config
+version: 1.0.0
+schema: v1
+
+models:
+  - uses: ollama/qwen2.5-coder:7b
+    as: qwen2.5-coder-7b
+    config:
+      temperature: 0.2
+      max_tokens: 2048
+      top_p: 0.9
+      frequency_penalty: 0.0
+      presence_penalty: 0.0
+      stop: ["\n\n"] 
