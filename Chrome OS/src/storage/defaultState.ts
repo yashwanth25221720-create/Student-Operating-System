@@ -194,6 +194,7 @@ export const defaultState: HaloState = {
     ],
     adBlocker: {
       enabled: true,
+      blockingMode: "balanced",
       blockYouTubeAds: true,
       blockTrackers: true,
       blockPopups: true,

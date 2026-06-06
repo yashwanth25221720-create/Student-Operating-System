@@ -1,4 +1,4 @@
-import { Activity, Download, EyeOff, Plus, Shield, ShieldCheck, Trash2, Upload } from "lucide-react";
+import { Activity, Download, EyeOff, Plus, Shield, ShieldCheck, Trash2, Upload, Sparkles } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useHalo } from "../../state/HaloStateContext";
 
@@ -47,6 +47,65 @@ export function AdBlockerView() {
       </div>
 
       {status && <p className="status-message">{status}</p>}
+
+      {/* Mode Cards Selector */}
+      <div className="adblocker-modes-selector" style={{ opacity: settings.enabled ? 1 : 0.5 }}>
+        <button
+          className={`mode-card ${settings.enabled && settings.blockingMode === "basic" ? "active" : ""}`}
+          onClick={() => {
+            dispatch({ type: "updateAdBlockerSettings", patch: { enabled: true, blockingMode: "basic" } });
+            setStatus("Switched to Basic Mode.");
+          }}
+        >
+          <div className="mode-card-header">
+            <Shield size={20} className="mode-icon basic" />
+            <h3>Basic Mode</h3>
+          </div>
+          <span className="mode-badge">Lightweight</span>
+          <p>Blocks standard ad networks and YouTube video ads. Keeps browser resources extremely light.</p>
+        </button>
+
+        <button
+          className={`mode-card ${settings.enabled && settings.blockingMode === "balanced" ? "active" : ""}`}
+          onClick={() => {
+            dispatch({ type: "updateAdBlockerSettings", patch: { enabled: true, blockingMode: "balanced" } });
+            setStatus("Switched to Balanced Mode.");
+          }}
+        >
+          <div className="mode-card-header">
+            <ShieldCheck size={20} className="mode-icon balanced" />
+            <h3>Balanced Mode</h3>
+          </div>
+          <span className="mode-badge">uBlock Style</span>
+          <p>Blocks trackers, pixels, popups, and standard ad scripts. Perfect for daily, clean browsing.</p>
+        </button>
+
+        <button
+          className={`mode-card ${settings.enabled && settings.blockingMode === "max" ? "active" : ""}`}
+          onClick={() => {
+            dispatch({ type: "updateAdBlockerSettings", patch: { enabled: true, blockingMode: "max" } });
+            setStatus("Switched to Max Mode.");
+          }}
+        >
+          <div className="mode-card-header">
+            <Sparkles size={20} className="mode-icon max" />
+            <h3>Max Mode</h3>
+          </div>
+          <span className="mode-badge">AdGuard Style</span>
+          <p>Heavy-duty blocks including cookie consent popups, overlay widgets, elements, and anti-adblock alerts.</p>
+        </button>
+
+        {settings.blockingMode === "custom" && (
+          <div className="mode-card active custom">
+            <div className="mode-card-header">
+              <Activity size={20} className="mode-icon custom" />
+              <h3>Custom Mode</h3>
+            </div>
+            <span className="mode-badge">Personalized</span>
+            <p>Your custom combination of blocker modules. Scaling is dynamically calculated.</p>
+          </div>
+        )}
+      </div>
 
       <div className="adblocker-stats">
         <article><strong>{settings.stats.adsBlocked}</strong><span>Ads blocked</span></article>

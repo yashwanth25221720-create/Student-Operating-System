@@ -8,7 +8,8 @@ export type ModuleKey =
   | "aiHub"
   | "adBlocker"
   | "workspaces"
-  | "settings";
+  | "settings"
+  ;
 
 export type WidgetKey =
   | "pinnedLinks"
@@ -192,6 +193,7 @@ export interface HaloSettings {
 
 export interface AdBlockerSettings {
   enabled: boolean;
+  blockingMode: "basic" | "balanced" | "max" | "custom";
   blockYouTubeAds: boolean;
   blockTrackers: boolean;
   blockPopups: boolean;

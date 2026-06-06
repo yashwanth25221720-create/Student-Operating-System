@@ -144,6 +144,7 @@ export function SettingsView() {
             <p className="empty-copy">HTML wallpapers run behind the interface in a sandboxed live layer. Large local videos may exceed Chrome local storage limits, so hosted URLs are best for long clips.</p>
           </div>
         </article>
+        {/* White Noise Player removed */}
       </div>
     </section>
   );

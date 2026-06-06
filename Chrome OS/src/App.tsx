@@ -11,6 +11,7 @@ import { UniversalSearch } from "./components/search/UniversalSearch";
 import { TasksView } from "./components/tasks/TasksView";
 import { TabGroupsView } from "./components/workspaces/TabGroupsView";
 import { WorkspacesView } from "./components/workspaces/WorkspacesView";
+// YouTube feature removed
 import { useHalo } from "./state/HaloStateContext";
 
 export function App() {
@@ -31,6 +32,7 @@ export function App() {
       {activeModule === "aiHub" && <AIDock expanded />}
       {activeModule === "adBlocker" && <AdBlockerView />}
       {activeModule === "workspaces" && <WorkspacesView />}
+      {/* YouTube module removed */}
       {activeModule === "settings" && <SettingsView />}
     </Shell>
   );

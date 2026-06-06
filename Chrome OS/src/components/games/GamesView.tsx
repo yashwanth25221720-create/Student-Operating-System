@@ -1,10 +1,10 @@
 import { Gamepad, RefreshCw } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-type GameKey = "dino" | "snake" | "tictactoe" | "memory" | "rps";
+type GameKey = "trex" | "snake" | "tictactoe" | "memory" | "rps";
 
 const games: Array<{ key: GameKey; title: string; description: string }> = [
-  { key: "dino", title: "Dino Runner", description: "Jump over cacti in a simplified offline endless runner." },
+  { key: "trex", title: "T-Rex Runner", description: "Play the Chrome offline dinosaur game in an embedded frame." },
   { key: "snake", title: "Snake", description: "Collect food and grow your snake without crashing." },
   { key: "tictactoe", title: "Tic Tac Toe", description: "Classic 3x3 X vs O strategy game." },
   { key: "memory", title: "Memory Match", description: "Flip cards to find matching pairs." },
@@ -27,91 +27,60 @@ function useKeyboardShortcuts(onArrow: (direction: "up" | "down" | "left" | "rig
   }, [enabled, onArrow]);
 }
 
-function DinoGame() {
-  const [score, setScore] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
-  const [running, setRunning] = useState(false);
-  const [jumpHeight, setJumpHeight] = useState(0);
-  const [obstacles, setObstacles] = useState(Array.from({ length: 3 }, (_, index) => ({ x: 320 + index * 220 })));
+// DinoRunner removed — using the T-Rex Runner iframe instead.
 
-  const jumpVelocity = useRef(0);
-  const speed = useRef(4);
+function TrexRunnerGame() {
+  const [reloadKey, setReloadKey] = useState(0);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const [fullscreen, setFullscreen] = useState(false);
 
-  const reset = () => {
-    setScore(0);
-    setGameOver(false);
-    setRunning(true);
-    setJumpHeight(0);
-    jumpVelocity.current = 0;
-    speed.current = 4;
-    setObstacles(Array.from({ length: 3 }, (_, index) => ({ x: 320 + index * 220 })));
+  const toggleFullscreen = async () => {
+    if (!wrapperRef.current) return;
+    try {
+      if (!document.fullscreenElement) {
+        await wrapperRef.current.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    } catch {
+      return;
+    }
   };
 
-  useKeyboardShortcuts(
-    (direction) => {
-      if (direction === "up" || direction === "right") {
-        if (!gameOver) {
-          setRunning(true);
-          if (jumpHeight === 0) {
-            jumpVelocity.current = 14;
-          }
-        }
-      }
-    },
-    true
-  );
-
   useEffect(() => {
-    if (!running || gameOver) return;
-    const interval = window.setInterval(() => {
-      setScore((value) => value + 1);
-      setObstacles((existing) => {
-        const next = existing
-          .map((obstacle) => ({ x: obstacle.x - speed.current }))
-          .filter((obstacle) => obstacle.x > -50);
-        if (next.length < 3 || next[next.length - 1].x < 180) {
-          next.push({ x: 360 + Math.floor(Math.random() * 120) });
-        }
-        return next;
-      });
-      setJumpHeight((height) => {
-        const nextHeight = Math.max(0, height + jumpVelocity.current);
-        jumpVelocity.current = Math.max(-14, jumpVelocity.current - 1);
-        return nextHeight;
-      });
-    }, 20);
-    return () => window.clearInterval(interval);
-  }, [running, gameOver]);
-
-  useEffect(() => {
-    const isHit = obstacles.some((obstacle) => obstacle.x >= 30 && obstacle.x <= 72 && jumpHeight < 40);
-    if (isHit && !gameOver) {
-      setGameOver(true);
-      setRunning(false);
-    }
-  }, [obstacles, jumpHeight, gameOver]);
+    const onChange = () => setFullscreen(Boolean(document.fullscreenElement));
+    document.addEventListener("fullscreenchange", onChange);
+    return () => document.removeEventListener("fullscreenchange", onChange);
+  }, []);
 
   return (
     <div className="game-stage">
       <div className="game-header">
         <div>
-          <h2>Dino Runner</h2>
-          <p>Press Arrow Up / W / Space to jump over cacti.</p>
+          <h2>T-Rex Runner</h2>
+          <p>Play the classic Chrome offline dinosaur game in an embedded browser frame.</p>
         </div>
-        <button onClick={reset}>
-          <RefreshCw size={16} /> Restart
-        </button>
+        <div className="game-header-actions">
+          <button className="game-action" onClick={() => setReloadKey((value) => value + 1)}>
+            <RefreshCw size={16} /> Reload
+          </button>
+          <button className="game-action" onClick={toggleFullscreen}>
+            {fullscreen ? "Exit Fullscreen" : "Fullscreen"}
+          </button>
+        </div>
       </div>
-      <div className="dino-arena">
-        <div className="dino-ground" />
-        <div className="dino" style={{ bottom: `${jumpHeight}px` }} />
-        {obstacles.map((obstacle, index) => (
-          <div className="dino-cactus" key={index} style={{ left: `${obstacle.x}px` }} />
-        ))}
+      <div className="trex-frame-wrapper" ref={wrapperRef}>
+        <iframe
+          key={reloadKey}
+          title="T-Rex Runner"
+          src="/t-rex-runner/index.html"
+          className="trex-frame"
+          allowFullScreen
+        />
       </div>
       <div className="game-footer">
-        <span>Score: {score}</span>
-        <span>{gameOver ? "Game Over" : running ? "Running" : "Press jump to start"}</span>
+        <span>Click inside the frame and press Space to start.</span>
+        <span>Focus must remain on the embedded game to control it.</span>
       </div>
     </div>
   );
@@ -183,7 +152,7 @@ function SnakeGame() {
           <h2>Snake</h2>
           <p>Use arrow keys or WASD to steer. Eat food and avoid hitting yourself.</p>
         </div>
-        <button onClick={reset}>
+        <button className="game-action" onClick={reset}>
           <RefreshCw size={16} /> Restart
         </button>
       </div>
@@ -262,7 +231,7 @@ function TicTacToeGame() {
           <h2>Tic Tac Toe</h2>
           <p>Take turns placing X and O. Get three in a row to win.</p>
         </div>
-        <button onClick={reset}>
+        <button className="game-action" onClick={reset}>
           <RefreshCw size={16} /> Reset
         </button>
       </div>
@@ -320,7 +289,7 @@ function MemoryGame() {
           <h2>Memory Match</h2>
           <p>Flip cards and remember where the pairs are hidden.</p>
         </div>
-        <button onClick={reset}>
+        <button className="game-action" onClick={reset}>
           <RefreshCw size={16} /> Restart
         </button>
       </div>
@@ -378,7 +347,7 @@ function RockPaperScissorsGame() {
           <h2>Rock Paper Scissors</h2>
           <p>Choose your move and try to beat the computer.</p>
         </div>
-        <button onClick={() => { setPlayer(null); setComputer(null); setResult(""); setScore({ player: 0, computer: 0, draws: 0 }); }}>
+        <button className="game-action" onClick={() => { setPlayer(null); setComputer(null); setResult(""); setScore({ player: 0, computer: 0, draws: 0 }); }}>
           <RefreshCw size={16} /> Reset
         </button>
       </div>
@@ -413,10 +382,12 @@ function RockPaperScissorsGame() {
 }
 
 export function GamesView() {
-  const [selectedGame, setSelectedGame] = useState<GameKey>("dino");
+  const [selectedGame, setSelectedGame] = useState<GameKey>("trex");
 
   const currentGame = useMemo(() => {
     switch (selectedGame) {
+      case "trex":
+        return <TrexRunnerGame />;
       case "snake":
         return <SnakeGame />;
       case "tictactoe":
@@ -426,7 +397,7 @@ export function GamesView() {
       case "rps":
         return <RockPaperScissorsGame />;
       default:
-        return <DinoGame />;
+        return <TrexRunnerGame />;
     }
   }, [selectedGame]);
 
@@ -437,8 +408,8 @@ export function GamesView() {
           <h1>Offline Games</h1>
           <p>Play offline games directly inside Halo OS. Use keyboard controls for running, snake, and more.</p>
         </div>
-        <button className="widget-command" onClick={() => setSelectedGame("dino")}>
-          <Gamepad size={16} /> Start Dino Runner
+        <button className="widget-command" onClick={() => setSelectedGame("trex")}>
+          <Gamepad size={16} /> Start T-Rex Runner
         </button>
       </div>
       <div className="games-grid">

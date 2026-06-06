@@ -6,7 +6,21 @@
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
-  "permissions": ["bookmarks", "storage", "tabs", "tabGroups", "favicon", "declarativeNetRequest", "declarativeNetRequestWithHostAccess"],
+  "permissions": ["bookmarks", "storage", "tabs", "tabGroups", "favicon", "declarativeNetRequest", "declarativeNetRequestWithHostAccess", "notifications"],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_ublock",
+        "enabled": false,
+        "path": "rulesets/ublock_base.json"
+      },
+      {
+        "id": "ruleset_adguard",
+        "enabled": false,
+        "path": "rulesets/adguard_base.json"
+      }
+    ]
+  },
   "background": {
     "service_worker": "serviceWorker.js",
     "type": "module"

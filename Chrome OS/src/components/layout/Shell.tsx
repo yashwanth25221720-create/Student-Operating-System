@@ -11,7 +11,8 @@ import {
   Shield,
   NotebookText,
   Settings,
-  Sparkles
+  Sparkles,
+  Youtube
 } from "lucide-react";
 import { useMemo } from "react";
 import type React from "react";
@@ -57,27 +58,34 @@ export function Shell({
       <WallpaperLayer wallpaper={wallpaper} />
       <aside className={`sidebar ${state.settings.sidebarCollapsed ? "is-collapsed" : ""}`}>
         <div className="brand">
-          <Sparkles size={22} />
-          {!state.settings.sidebarCollapsed && <span>Halo OS</span>}
+          <div className="p-2 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl">
+            <Sparkles size={22} className="text-white" />
+          </div>
+          {!state.settings.sidebarCollapsed && <span className="font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Halo OS</span>}
         </div>
         <nav className="side-nav">
           {navItems.map((item) => {
             const Icon = item.icon;
+            const isActive = activeModule === item.key;
             return (
               <button
-                className={activeModule === item.key ? "active" : ""}
+                className={isActive ? "active" : ""}
                 key={item.key}
                 title={item.label}
                 onClick={() => dispatch({ type: "setActiveModule", module: item.key })}
               >
-                <Icon size={19} />
-                {!state.settings.sidebarCollapsed && <span>{item.label}</span>}
+                <div className={`p-2 rounded-lg transition-all duration-200 ${isActive ? "bg-gradient-to-br from-purple-500 to-purple-600 shadow-lg shadow-purple-500/25" : "hover:bg-white/10"}`}>
+                  <Icon size={19} className={isActive ? "text-white" : "text-white/70 hover:text-white"} />
+                </div>
+                {!state.settings.sidebarCollapsed && <span className={isActive ? "text-white font-medium" : "text-white/70 hover:text-white"}>{item.label}</span>}
               </button>
             );
           })}
         </nav>
         <button className="collapse-button" onClick={() => dispatch({ type: "toggleSidebar" })} title="Toggle sidebar">
-          {state.settings.sidebarCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
+          <div className="p-2 hover:bg-white/10 rounded-lg transition-all duration-200">
+            {state.settings.sidebarCollapsed ? <ChevronRight size={18} className="text-white/70 hover:text-white" /> : <ChevronLeft size={18} className="text-white/70 hover:text-white" />}
+          </div>
         </button>
       </aside>
 

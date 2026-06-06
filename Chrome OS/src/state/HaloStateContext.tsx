@@ -271,14 +271,93 @@ function reducer(state: HaloState, action: Action): HaloState {
         }
       };
     }
-    case "updateAdBlockerSettings":
+    case "updateAdBlockerSettings": {
+      const current = state.settings.adBlocker;
+      let next = { ...current, ...action.patch };
+
+      if (action.patch.blockingMode && action.patch.blockingMode !== current.blockingMode) {
+        const mode = action.patch.blockingMode;
+        if (mode === "basic") {
+          next = {
+            ...next,
+            blockYouTubeAds: true,
+            blockTrackers: false,
+            blockPopups: false,
+            blockOverlays: false,
+            blockCookieBanners: false,
+            antiAntiAdblock: false,
+            elementPicker: false
+          };
+        } else if (mode === "balanced") {
+          next = {
+            ...next,
+            blockYouTubeAds: true,
+            blockTrackers: true,
+            blockPopups: true,
+            blockOverlays: true,
+            blockCookieBanners: false,
+            antiAntiAdblock: true,
+            elementPicker: false
+          };
+        } else if (mode === "max") {
+          next = {
+            ...next,
+            blockYouTubeAds: true,
+            blockTrackers: true,
+            blockPopups: true,
+            blockOverlays: true,
+            blockCookieBanners: true,
+            antiAntiAdblock: true,
+            elementPicker: true
+          };
+        }
+      } else {
+        const isBasic =
+          next.blockYouTubeAds === true &&
+          next.blockTrackers === false &&
+          next.blockPopups === false &&
+          next.blockOverlays === false &&
+          next.blockCookieBanners === false &&
+          next.antiAntiAdblock === false &&
+          next.elementPicker === false;
+
+        const isBalanced =
+          next.blockYouTubeAds === true &&
+          next.blockTrackers === true &&
+          next.blockPopups === true &&
+          next.blockOverlays === true &&
+          next.blockCookieBanners === false &&
+          next.antiAntiAdblock === true &&
+          next.elementPicker === false;
+
+        const isMax =
+          next.blockYouTubeAds === true &&
+          next.blockTrackers === true &&
+          next.blockPopups === true &&
+          next.blockOverlays === true &&
+          next.blockCookieBanners === true &&
+          next.antiAntiAdblock === true &&
+          next.elementPicker === true;
+
+        if (isBasic) {
+          next.blockingMode = "basic";
+        } else if (isBalanced) {
+          next.blockingMode = "balanced";
+        } else if (isMax) {
+          next.blockingMode = "max";
+        } else {
+          next.blockingMode = "custom";
+        }
+      }
+
       return {
         ...state,
         settings: {
           ...state.settings,
-          adBlocker: { ...state.settings.adBlocker, ...action.patch }
+          adBlocker: next
         }
       };
+    }
     case "addAdBlockerCustomRule":
       return {
         ...state,

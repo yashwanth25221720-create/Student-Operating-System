@@ -1,11 +1,13 @@
-import { Plus } from "lucide-react";
+import { Plus, Clock } from "lucide-react";
 import { useState } from "react";
 import { useHalo } from "../../state/HaloStateContext";
 import type { HaloTask, Priority } from "../../types/halo";
+import { TodoTimerModal } from "../TodoTimerModal";
 
 export function TasksView() {
   const { state, dispatch } = useHalo();
   const [title, setTitle] = useState("");
+  const [timerTask, setTimerTask] = useState<HaloTask | null>(null);
 
   const addTask = () => {
     if (!title.trim()) return;
@@ -45,9 +47,21 @@ export function TasksView() {
               <option value="high">High</option>
             </select>
             <input value={task.category} onChange={(event) => dispatch({ type: "upsertTask", task: { ...task, category: event.target.value } })} />
+            <button onClick={() => setTimerTask(task)} title="Set timer" className="task-timer-button">
+              <Clock size={16} className="task-timer-icon" />
+            </button>
           </article>
         ))}
       </div>
+
+      {timerTask && (
+        <TodoTimerModal
+          taskId={timerTask.id}
+          taskTitle={timerTask.title}
+          onClose={() => setTimerTask(null)}
+          onComplete={() => dispatch({ type: "toggleTask", taskId: timerTask.id })}
+        />
+      )}
     </section>
   );
 }
