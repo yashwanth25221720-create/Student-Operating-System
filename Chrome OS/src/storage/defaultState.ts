@@ -161,8 +161,7 @@ export const defaultState: HaloState = {
     theme: "dark",
     accentColor: "#8b5cf6",
     defaultAiProviderId: "chatgpt",
-    searchBehavior: "new-tab",
-    sidebarCollapsed: false,
+    chromeShortcuts: [],
     minimalMode: false,
     visibleWidgets: {
       pinnedLinks: true,
@@ -192,6 +191,10 @@ export const defaultState: HaloState = {
         createdAt: new Date().toISOString()
       }
     ],
+    minimalDock: {
+      position: "bottom",
+      pinned: false
+    },
     adBlocker: {
       enabled: true,
       blockingMode: "balanced",

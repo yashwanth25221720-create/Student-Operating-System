@@ -1,4 +1,8 @@
 import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
   Bot,
   Bookmark,
   CalendarDays,
@@ -9,6 +13,8 @@ import {
   Home,
   Layers,
   NotebookText,
+  Pin,
+  PinOff,
   Plus,
   Search,
   Settings,
@@ -16,7 +22,7 @@ import {
   Sparkles,
   Upload
 } from "lucide-react";
-import { memo, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { openUrl } from "../../lib/chromeApi";
 import { useHalo } from "../../state/HaloStateContext";
 import type { HaloNote, HaloTask, MinimalWidgetInstance, MinimalWidgetPreset, ModuleKey } from "../../types/halo";
@@ -46,6 +52,12 @@ const panelTitles: Record<Exclude<ModuleKey, "home">, string> = {
   settings: "Settings"
 };
 
+function nextPosition(position: "top" | "right" | "bottom" | "left") {
+  const order: Array<"top" | "right" | "bottom" | "left"> = ["top", "right", "bottom", "left"];
+  const nextIndex = (order.indexOf(position) + 1) % order.length;
+  return order[nextIndex];
+}
+
 export function MinimalDesktop() {
   const { state, dispatch } = useHalo();
   const [panel, setPanel] = useState<PanelKey>(null);
@@ -53,6 +65,7 @@ export function MinimalDesktop() {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [managerOpen, setManagerOpen] = useState(false);
   const [lowFxMode, setLowFxMode] = useState(false);
+  const [dockHovered, setDockHovered] = useState(false);
   const importRef = useRef<HTMLInputElement | null>(null);
   const primaryNote = state.notes[0];
   const provider = state.providers.find((item) => item.id === state.settings.defaultAiProviderId) ?? state.providers[0];
@@ -80,6 +93,9 @@ export function MinimalDesktop() {
     [state.settings.accentColor, state.settings.wallpaper]
   );
   const wallpaperTone = useMemo(() => getWallpaperTone(state.settings.wallpaper.value), [state.settings.wallpaper.value]);
+  const dockPosition = state.settings.minimalDock.position;
+  const dockPinned = state.settings.minimalDock.pinned;
+  const dockCollapsed = !dockPinned && !dockHovered;
 
   const exportPreset = () => {
     const preset: MinimalWidgetPreset = {
@@ -175,7 +191,18 @@ export function MinimalDesktop() {
           <button className="widget-performance-button" onClick={() => setLowFxMode((value) => !value)}>
             {lowFxMode ? "High FX" : "Low FX"}
           </button>
-          <Dock activePanel={panel} onOpen={setPanel} onFullMode={() => dispatch({ type: "toggleMinimalMode" })} onFocus={() => setFocused(true)} />
+          <Dock
+            activePanel={panel}
+            position={dockPosition}
+            pinned={dockPinned}
+            collapsed={dockCollapsed}
+            onOpen={setPanel}
+            onFullMode={() => dispatch({ type: "toggleMinimalMode" })}
+            onFocus={() => setFocused(true)}
+            onSetPosition={(position) => dispatch({ type: "setMinimalDockPosition", position })}
+            onTogglePin={() => dispatch({ type: "toggleMinimalDockPinned" })}
+            onHoverChange={setDockHovered}
+          />
         </>
       )}
 
@@ -218,6 +245,7 @@ function MinimalWidgetContent({
   const primaryNote = state.notes[0];
   const now = useNow(widgetNeedsClock(widget.type) ? 1000 : 60000);
   const [aiQuery, setAiQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   if (widget.type === "clock") {
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -300,6 +328,46 @@ function MinimalWidgetContent({
         </div>
       </div>
     );
+  }
+
+  if (widget.type === "chromeSearch") {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const trimmed = searchQuery.trim();
+      if (!trimmed) return;
+      await openUrl(`https://www.google.com/search?q=${encodeURIComponent(trimmed)}`, true);
+      setSearchQuery("");
+    };
+
+    return (
+      <div className="chrome-search-widget">
+        <form className="chrome-search-widget-form" onSubmit={handleSubmit}>
+          <Search size={18} />
+          <input
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+            placeholder="Search Google or type a URL"
+            aria-label="Chrome search"
+          />
+          <button type="submit">Search</button>
+        </form>
+        <div className="chrome-search-shortcuts">
+          {state.settings.chromeShortcuts.length ? (
+            state.settings.chromeShortcuts.map((shortcut, index) => (
+              <button key={index} onClick={() => void openUrl(shortcut.url, true)}>
+                {shortcut.title}
+              </button>
+            ))
+          ) : (
+            <p className="empty-copy">Add shortcuts in Settings to show them here.</p>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  if (widget.type === "shortcuts") {
+    return <ShortcutsWidget shortcuts={state.settings.chromeShortcuts} />;
   }
 
   if (widget.type === "workspaceSwitcher") {
@@ -491,7 +559,29 @@ function WidgetManager({ onClose, onExport, onImport }: { onClose: () => void; o
   );
 }
 
-function Dock({ activePanel, onOpen, onFullMode, onFocus }: { activePanel: PanelKey; onOpen: (panel: PanelKey) => void; onFullMode: () => void; onFocus: () => void }) {
+function Dock({
+  activePanel,
+  position,
+  pinned,
+  collapsed,
+  onOpen,
+  onFullMode,
+  onFocus,
+  onSetPosition,
+  onTogglePin,
+  onHoverChange
+}: {
+  activePanel: PanelKey;
+  position: "top" | "right" | "bottom" | "left";
+  pinned: boolean;
+  collapsed: boolean;
+  onOpen: (panel: PanelKey) => void;
+  onFullMode: () => void;
+  onFocus: () => void;
+  onSetPosition: (position: "top" | "right" | "bottom" | "left") => void;
+  onTogglePin: () => void;
+  onHoverChange: (hovered: boolean) => void;
+}) {
   const dockItems: Array<{ key: PanelKey | "home"; label: string; icon: React.ElementType }> = [
     { key: "home", label: "Home", icon: Home },
     { key: "bookmarks", label: "Bookmarks", icon: Bookmark },
@@ -505,7 +595,11 @@ function Dock({ activePanel, onOpen, onFullMode, onFocus }: { activePanel: Panel
   ];
 
   return (
-    <nav className="minimal-dock">
+    <nav
+      className={`minimal-dock position-${position} ${collapsed ? "collapsed" : ""}`}
+      onMouseEnter={() => onHoverChange(true)}
+      onMouseLeave={() => onHoverChange(false)}
+    >
       {dockItems.map((item) => {
         const Icon = item.icon;
         return (
@@ -514,11 +608,74 @@ function Dock({ activePanel, onOpen, onFullMode, onFocus }: { activePanel: Panel
           </button>
         );
       })}
+      <div className="dock-config">
+        <button title={pinned ? "Unpin dock" : "Pin dock"} onClick={onTogglePin} className={pinned ? "active" : ""}>
+          {pinned ? <Pin size={16} /> : <PinOff size={16} />}
+        </button>
+        <button
+          title={`Dock ${position}`}
+          onClick={() => onSetPosition(nextPosition(position))}
+          className="dock-position-button"
+        >
+          {position === "top" && <ArrowUp size={16} />}
+          {position === "right" && <ArrowRight size={16} />}
+          {position === "bottom" && <ArrowDown size={16} />}
+          {position === "left" && <ArrowLeft size={16} />}
+        </button>
+      </div>
       <button title="Focus mode" onClick={onFocus}><EyeOff size={20} /></button>
       <button title="Full mode" onClick={onFullMode}>Full</button>
     </nav>
   );
 }
+
+const ShortcutsWidget = memo(function ShortcutsWidget({ shortcuts }: { shortcuts: { title: string; url: string }[] }) {
+  const [favicons, setFavicons] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const loadFavicons = async () => {
+      const newFavicons: Record<string, string> = {};
+      for (const shortcut of shortcuts) {
+        try {
+          const url = new URL(shortcut.url);
+          const faviconUrl = `${url.origin}/favicon.ico`;
+          newFavicons[shortcut.url] = faviconUrl;
+        } catch {
+          newFavicons[shortcut.url] = "";
+        }
+      }
+      setFavicons(newFavicons);
+    };
+    loadFavicons();
+  }, [shortcuts]);
+
+  if (!shortcuts.length) {
+    return <p className="empty-copy">Add shortcuts in Settings to show them here.</p>;
+  }
+
+  return (
+    <div className="shortcuts-widget">
+      {shortcuts.map((shortcut, index) => (
+        <button
+          key={index}
+          className="shortcut-block"
+          onClick={() => void openUrl(shortcut.url, true)}
+          title={shortcut.url}
+        >
+          <img
+            src={favicons[shortcut.url] || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect fill='%238b5cf6' width='16' height='16' rx='2'/%3E%3Ctext x='8' y='12' font-size='10' font-weight='bold' fill='white' text-anchor='middle'%3E%3C/text%3E%3C/svg%3E"}
+            alt={shortcut.title}
+            className="shortcut-favicon"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect fill='%238b5cf6' width='16' height='16' rx='2'/%3E%3C/svg%3E";
+            }}
+          />
+          <span className="shortcut-title">{shortcut.title}</span>
+        </button>
+      ))}
+    </div>
+  );
+});
 
 function FloatingPanel({ panel, onClose }: { panel: Exclude<ModuleKey, "home">; onClose: () => void }) {
   return (

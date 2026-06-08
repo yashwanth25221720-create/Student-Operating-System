@@ -559,6 +559,112 @@ p {
   justify-content: flex-end;
 }
 
+.chrome-search-widget {
+  display: grid;
+  gap: 1rem;
+}
+
+.chrome-search-widget-form {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.chrome-search-widget-form input {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  color: #eef2ff;
+  outline: none;
+  min-width: 0;
+}
+
+.chrome-search-widget-form input::placeholder {
+  color: #94a3b8;
+}
+
+.chrome-search-widget-form button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.8rem 1.4rem;
+  background: rgba(139, 92, 246, 0.92);
+  color: #fff;
+}
+
+.chrome-search-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.chrome-search-shortcuts button {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  color: #eef2ff;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.chrome-search-shortcuts button:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
+}
+
+.shortcuts-widget {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 0.85rem;
+  padding: 0.5rem 0;
+}
+
+.shortcut-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  color: #eef2ff;
+  font-size: 0.85rem;
+  text-align: center;
+  transition: all 160ms ease;
+  cursor: pointer;
+}
+
+.shortcut-block:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+  border-color: rgba(139, 92, 246, 0.35);
+}
+
+.shortcut-favicon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px;
+}
+
+.shortcut-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+  font-weight: 500;
+}
+
+
 .game-action,
 .rps-button,
 .tictactoe-cell,
@@ -1305,47 +1411,6 @@ textarea {
   width: 24px;
 }
 
-.widget-size-presets {
-  backdrop-filter: blur(14px);
-  background: rgba(8, 12, 20, 0.46);
-  border-radius: 8px;
-  display: flex;
-  gap: 5px;
-  left: 12px;
-  margin: 0;
-  min-width: 0;
-  opacity: 0;
-  overflow: hidden;
-  padding: 4px;
-  position: absolute;
-  right: 12px;
-  top: 44px;
-  transition: opacity 140ms ease;
-  z-index: 4;
-}
-
-.widget-frame:hover .widget-size-presets,
-.widget-frame.is-active .widget-size-presets {
-  opacity: 1;
-}
-
-.widget-size-presets button {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 7px;
-  color: #cbd5e1;
-  flex: 0 0 auto;
-  font-size: 0.64rem;
-  font-weight: 800;
-  height: 22px;
-  padding: 0 6px;
-}
-
-.widget-size-presets button.active {
-  background: color-mix(in srgb, var(--accent) 44%, rgba(255, 255, 255, 0.1));
-  color: #fff;
-}
-
 .widget-frame:hover .widget-frame-header button,
 .widget-frame.is-active .widget-frame-header button {
   opacity: 1;
@@ -1897,14 +1962,103 @@ textarea {
   background: rgba(8, 12, 20, 0.42);
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 22px;
-  bottom: clamp(12px, 2.4vh, 24px);
   box-shadow: 0 22px 90px rgba(0, 0, 0, 0.32);
+  display: inline-flex;
+  flex-wrap: wrap;
   gap: 8px;
-  left: 50%;
   padding: 9px;
   position: absolute;
-  transform: translateX(-50%);
+  width: fit-content;
+  height: fit-content;
   z-index: 5;
+  transition: transform 180ms ease, opacity 180ms ease, width 180ms ease, height 180ms ease;
+}
+
+.minimal-dock.position-bottom {
+  bottom: clamp(12px, 2.4vh, 24px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.minimal-dock.position-top {
+  top: clamp(12px, 2.4vh, 24px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.minimal-dock.position-left {
+  left: clamp(12px, 2.4vw, 24px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.minimal-dock.position-right {
+  right: clamp(12px, 2.4vw, 24px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.minimal-dock.collapsed.position-bottom {
+  transform: translateX(-50%) translateY(78%);
+  opacity: 0.24;
+}
+
+.minimal-dock.collapsed.position-top {
+  transform: translateX(-50%) translateY(-78%);
+  opacity: 0.24;
+}
+
+.minimal-dock.collapsed.position-left {
+  transform: translateY(-50%) translateX(-78%);
+  opacity: 0.24;
+}
+
+.minimal-dock.collapsed.position-right {
+  transform: translateY(-50%) translateX(78%);
+  opacity: 0.24;
+}
+
+.minimal-dock .dock-config {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(34px, 1fr));
+  gap: 6px;
+  align-items: center;
+}
+
+.minimal-dock .dock-config button {
+  min-width: 34px;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  padding: 0;
+}
+
+.minimal-dock.position-left,
+.minimal-dock.position-right {
+  flex-direction: column;
+}
+
+.minimal-dock.position-left .dock-config,
+.minimal-dock.position-right .dock-config {
+  grid-template-columns: 1fr;
+}
+
+.minimal-dock.collapsed .dock-config button {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.minimal-dock.collapsed button:not(.active):not(.dock-config button) {
+  opacity: 0;
+  width: 0;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+.minimal-dock.collapsed {
+  pointer-events: auto;
 }
 
 .minimal-dock button,

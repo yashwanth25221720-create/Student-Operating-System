@@ -1,11 +1,8 @@
 import {
-  ArrowDownToLine,
-  ArrowUpToLine,
   Copy,
   EyeOff,
   Lock,
   Move,
-  Pin,
   Trash2,
   Unlock
 } from "lucide-react";
@@ -16,13 +13,6 @@ import type { MinimalWidgetFrame, MinimalWidgetInstance, WidgetSizePreset } from
 
 const GRID = 1;
 const MIN_FRAME = { width: 16, height: 18 };
-const SIZE_PRESETS: Record<Exclude<WidgetSizePreset, "custom">, Pick<MinimalWidgetFrame, "width" | "height">> = {
-  xs: { width: 16, height: 18 },
-  small: { width: 22, height: 14 },
-  medium: { width: 30, height: 22 },
-  large: { width: 42, height: 32 },
-  xl: { width: 58, height: 44 }
-};
 const resizeHandles = ["n", "s", "e", "w", "ne", "nw", "se", "sw"] as const;
 type ResizeHandle = (typeof resizeHandles)[number];
 
@@ -167,11 +157,6 @@ export function WidgetFrame({ widget, children }: { widget: MinimalWidgetInstanc
     window.addEventListener("pointercancel", cleanup);
   };
 
-  const applyPreset = (preset: Exclude<WidgetSizePreset, "custom">) => {
-    commitFrame(clampFrame({ ...liveFrame, ...SIZE_PRESETS[preset] }));
-    dispatch({ type: "updateMinimalWidget", widgetId: widget.id, patch: { sizePreset: preset } });
-  };
-
   return (
     <article
       ref={frameRef}
@@ -194,24 +179,14 @@ export function WidgetFrame({ widget, children }: { widget: MinimalWidgetInstanc
       <header className="widget-frame-header" onPointerDown={(event) => beginInteraction(event)}>
         <span><Move size={14} /> {widget.title}</span>
         <div onPointerDown={(event) => event.stopPropagation()}>
-          <button title="Bring to front" onClick={() => dispatch({ type: "bringWidgetForward", widgetId: widget.id })}><ArrowUpToLine size={14} /></button>
-          <button title="Send backward" onClick={() => dispatch({ type: "sendWidgetBackward", widgetId: widget.id })}><ArrowDownToLine size={14} /></button>
-          <button title="Duplicate" onClick={() => dispatch({ type: "duplicateMinimalWidget", widgetId: widget.id })}><Copy size={14} /></button>
+            <button title="Duplicate" onClick={() => dispatch({ type: "duplicateMinimalWidget", widgetId: widget.id })}><Copy size={14} /></button>
           <button title={widget.locked ? "Unlock layer" : "Lock layer"} onClick={() => dispatch({ type: "updateMinimalWidget", widgetId: widget.id, patch: { locked: !widget.locked } })}>
             {widget.locked ? <Lock size={14} /> : <Unlock size={14} />}
           </button>
-          <button title={widget.pinned ? "Unpin layer" : "Pin layer"} onClick={() => dispatch({ type: "updateMinimalWidget", widgetId: widget.id, patch: { pinned: !widget.pinned } })}><Pin size={14} /></button>
           <button title="Hide" onClick={() => dispatch({ type: "updateMinimalWidget", widgetId: widget.id, patch: { hidden: true } })}><EyeOff size={14} /></button>
           <button title="Remove" onClick={() => dispatch({ type: "removeMinimalWidget", widgetId: widget.id })}><Trash2 size={14} /></button>
         </div>
       </header>
-      <div className="widget-size-presets" onPointerDown={(event) => event.stopPropagation()}>
-        {(["xs", "small", "medium", "large", "xl"] as const).map((preset) => (
-          <button className={widget.sizePreset === preset ? "active" : ""} key={preset} onClick={() => applyPreset(preset)}>
-            {preset.toUpperCase()}
-          </button>
-        ))}
-      </div>
       <div className="widget-frame-body">{children}</div>
       {!widget.locked && resizeHandles.map((handle) => (
         <button

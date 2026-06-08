@@ -1,3 +1,4 @@
+import React from "react";
 import { useHalo } from "../../state/HaloStateContext";
 import type { Wallpaper, WidgetKey } from "../../types/halo";
 
@@ -16,6 +17,9 @@ const widgetLabels: Record<WidgetKey, string> = {
 
 export function SettingsView() {
   const { state, dispatch } = useHalo();
+  // Local state for new shortcut entry
+  const [newTitle, setNewTitle] = React.useState("");
+  const [newUrl, setNewUrl] = React.useState("");
 
   const setUploadedWallpaper = (file: File | undefined) => {
     if (!file) return;
@@ -144,6 +148,34 @@ export function SettingsView() {
             <p className="empty-copy">HTML wallpapers run behind the interface in a sandboxed live layer. Large local videos may exceed Chrome local storage limits, so hosted URLs are best for long clips.</p>
           </div>
         </article>
+          <article>
+            <h2>Chrome Search Widget</h2>
+            <p className="empty-copy">Manage shortcuts for the Chrome-style search widget available in the widget gallery.</p>
+            <div className="chrome-shortcuts">
+              <h3>Shortcuts</h3>
+              {state.settings.chromeShortcuts.length ? (
+                state.settings.chromeShortcuts.map((s, idx) => (
+                  <div key={idx} className="shortcut-item">
+                    <a href={s.url} target="_blank" rel="noreferrer" style={{ marginRight: "8px" }}>{s.title}</a>
+                    <button onClick={() => dispatch({ type: "removeChromeShortcut", title: s.title })}>Remove</button>
+                  </div>
+                ))
+              ) : (
+                <p className="empty-copy">Add shortcuts here to make them available in the Chrome Search widget.</p>
+              )}
+              <div className="add-shortcut">
+                <input placeholder="Title" value={newTitle} onChange={e => setNewTitle(e.target.value)} />
+                <input placeholder="URL" value={newUrl} onChange={e => setNewUrl(e.target.value)} />
+                <button onClick={() => {
+                  if (newTitle && newUrl) {
+                    dispatch({ type: "addChromeShortcut", shortcut: { title: newTitle, url: newUrl } });
+                    setNewTitle("");
+                    setNewUrl("");
+                  }
+                }}>Add</button>
+              </div>
+            </div>
+          </article>
         {/* White Noise Player removed */}
       </div>
     </section>

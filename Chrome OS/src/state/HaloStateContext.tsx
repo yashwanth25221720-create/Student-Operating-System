@@ -23,6 +23,9 @@ type Action =
   | { type: "setActiveModule"; module: ModuleKey }
   | { type: "switchWorkspace"; workspaceId: string }
   | { type: "upsertNote"; note: HaloNote }
+  | { type: "addChromeShortcut"; shortcut: { title: string; url: string } }
+  | { type: "removeChromeShortcut"; title: string }
+  | { type: "setChromeShortcuts"; shortcuts: { title: string; url: string }[] }
   | { type: "deleteNote"; noteId: string }
   | { type: "upsertTask"; task: HaloTask }
   | { type: "toggleTask"; taskId: string }
@@ -39,6 +42,8 @@ type Action =
   | { type: "setAccent"; accentColor: string }
   | { type: "setSearchBehavior"; behavior: HaloState["settings"]["searchBehavior"] }
   | { type: "toggleMinimalMode" }
+  | { type: "setMinimalDockPosition"; position: HaloState["settings"]["minimalDock"]["position"] }
+  | { type: "toggleMinimalDockPinned" }
   | { type: "setWallpaper"; wallpaper: Wallpaper }
   | { type: "addMinimalWidget"; widget: MinimalWidgetInstance }
   | { type: "updateMinimalWidget"; widgetId: string; patch: Partial<MinimalWidgetInstance> }
@@ -134,12 +139,42 @@ function reducer(state: HaloState, action: Action): HaloState {
     case "setSearchBehavior":
       return { ...state, settings: { ...state.settings, searchBehavior: action.behavior } };
     case "toggleMinimalMode":
+      return { ...state, settings: { ...state.settings, minimalMode: !state.settings.minimalMode } };
+    case "addChromeShortcut":
       return {
         ...state,
         settings: {
           ...state.settings,
-          minimalMode: !state.settings.minimalMode,
-          sidebarCollapsed: !state.settings.minimalMode ? true : state.settings.sidebarCollapsed
+          chromeShortcuts: [...state.settings.chromeShortcuts, action.shortcut]
+        }
+      };
+    case "removeChromeShortcut":
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          chromeShortcuts: state.settings.chromeShortcuts.filter((s) => s.title !== action.title)
+        }
+      };
+    case "setChromeShortcuts":
+      return {
+        ...state,
+        settings: { ...state.settings, chromeShortcuts: action.shortcuts }
+      };
+    case "setMinimalDockPosition":
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          minimalDock: { ...state.settings.minimalDock, position: action.position }
+        }
+      };
+    case "toggleMinimalDockPinned":
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          minimalDock: { ...state.settings.minimalDock, pinned: !state.settings.minimalDock.pinned }
         }
       };
     case "setWallpaper":

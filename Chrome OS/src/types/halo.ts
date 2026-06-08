@@ -107,6 +107,8 @@ export type MinimalWidgetType =
   | "bookmarks"
   | "calendar"
   | "aiSearch"
+  | "chromeSearch"
+  | "shortcuts"
   | "quickLinks"
   | "workspaceSwitcher"
   | "quote"
@@ -182,12 +184,17 @@ export interface HaloSettings {
   searchBehavior: "new-tab" | "current-tab";
   sidebarCollapsed: boolean;
   minimalMode: boolean;
+  chromeShortcuts: { title: string; url: string }[];
   visibleWidgets: Record<WidgetKey, boolean>;
   widgetOrder: WidgetKey[];
   wallpaper: Wallpaper;
   minimalWidgets: MinimalWidgetInstance[];
   widgetGroups: MinimalWidgetGroup[];
   widgetPresets: MinimalWidgetPreset[];
+  minimalDock: {
+    position: "top" | "right" | "bottom" | "left";
+    pinned: boolean;
+  };
   adBlocker: AdBlockerSettings;
 }
 
